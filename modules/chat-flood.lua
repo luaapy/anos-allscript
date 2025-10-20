@@ -11,11 +11,23 @@ local lastSent = 0
 local floodDelay = 1
 
 local messages = {
-    "halo",
-    "wkwk",
-    "test",
-    "hello",
-    "nice"
+    "ANOS S.c.r!pt HUB | g1th ub anos-rgb",
+    "ANOS EXPLOIT ONTOP", 
+    "ANOS EXPLOIT NO 1",
+    "gɪthu🅱️ anos-rgb",
+    "ANOS gɪthu🅱️ anos-rgb",
+    "🔥 ANOS BEST EXPLOIT 🔥",
+    "ANOS HUB | POWERED BY ANOS.PY",
+    "ANOS SCRIPT HUB | UPDATE",
+    "ANOS EXPLOIT | EASY USE",
+    "ANOS SCRIPT | NO KEY",
+    "ANOS HUB | FREE PREMIUM",
+    "ANOS HUB | DAILY UPDATES",
+    "ANOS EXPLOIT | SMOOTH UI",
+    "ANOS HUB |  ESP",
+    "ANOS | FLY + NOCLIP + SPEED",
+    "ANOS HUB | SCRIPT BUILDER",
+    "ANOS HUB | OPEN SOURCE",
 }
 
 function Module.start()
