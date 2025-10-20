@@ -7,8 +7,8 @@ local Module = {}
 
 local connection
 local running = false
-local spamMessage = "ANOS SCRIPT HUB | github.com/anos-rgb"
-local spamDelay = 2
+local spamMessage = "ANOS S.c.r!pt HUB | g1th ub anos-rgb"
+local spamDelay = 6
 local lastSent = 0
 
 function Module.start()
