@@ -54,8 +54,7 @@ local Modules = {
     {name = "Auto Click", file = "auto-click.lua", category = "Automation", icon = "🖱️"},
     {name = "Hitbox Expander", file = "hitbox-expander.lua", category = "Combat", icon = "📦"},
     {name = "Silent Aim", file = "silent-aim.lua", category = "Combat", icon = "🎯"},
-    {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪"},
-    {name = "Speed Fly", file = "speed-fly.lua", category = "Movement", icon = "🚁"}
+    {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪"}
 }
 
 local HubGui = Instance.new("ScreenGui")
