@@ -4,7 +4,7 @@ local LocalPlayer = Players.LocalPlayer
 
 local Module = {}
 local connection
-local animSpeed = 5
+local animSpeed = 10
 
 function Module.start()
     connection = RunService.Heartbeat:Connect(function()
