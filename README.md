@@ -1,227 +1,311 @@
-# 🔥 ANOS SCRIPT HUB - Roblox Modular Script Collection
+# ⚡ ANOS SCRIPT HUB
 
-![GitHub stars](https://img.shields.io/github/stars/anos-rgb/anos-allscript?style=social)
-![GitHub forks](https://img.shields.io/github/forks/anos-rgb/anos-allscript?style=social)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+<div align="center">
 
-**Koleksi script Roblox paling lengkap dengan 32 module berbeda!** Script ini dibuat modular, jadi lu bisa aktifin/matiin fitur sesuai kebutuhan tanpa lag atau crash.
+![Version](https://img.shields.io/badge/version-2.0-blueviolet)
+![Modules](https://img.shields.io/badge/modules-44-brightgreen)
+![Status](https://img.shields.io/badge/status-active-success)
+![Platform](https://img.shields.io/badge/platform-Roblox-red)
 
-## ⚡ Features
+**Modern Script Hub untuk Roblox dengan 44+ Module Powerful**
 
-### 🏃 Movement (8 Modules)
-- **Speed Hack** - Lari super cepat, bisa diatur kecepatannya
-- **Jump Power** - Lompat tinggi kayak superhero
-- **Infinite Jump** - Lompat unlimited di udara
-- **Fly/Levitate** - Terbang kemana aja pake WASD
-- **No Clip** - Tembus tembok dan obstacle
-- **Teleport Spam** - Loncat-loncat posisi random
-- **Walk on Air** - Jalan di udara pake invisible platform
-- **Ice Skate** - Sliding effect kayak di es
-- **Moonwalk** - Jalan mundur dengan style
-- **Climb Boost** - Panjat super cepat
+[Features](#-features) • [Installation](#-installation) • [Modules](#-modules) • [Usage](#-usage) • [Contributing](#-contributing)
 
-### 🎭 Character (7 Modules)
-- **God Mode** - Kebal dari semua damage
-- **Fling Self** - Lempar diri sendiri ke arah random
-- **Spin Character** - Putar character super cepat
-- **Ragdoll Spam** - Character jatuh-jatuh terus
-- **Sit Spam** - Duduk berdiri duduk berdiri spam
-- **Anti Fall Damage** - Jatuh dari ketinggian tanpa mati
+</div>
 
-### 🎬 Animation (5 Modules)
-- **Emote Spam** - Spam emote random
-- **Animation Speed** - Percepat semua animasi 5x
-- **Animation Glitch** - Bikin animasi jadi glitchy
-- **Pose Modes** - T-pose dan A-pose
-- **Animation Freeze** - Freeze animasi di tengah-tengah
+---
 
-### ⚔️ Combat (2 Modules)
-- **Rapid Fire** - Spam tool activation super cepat
-- **Instant Reload** - Reload weapon instantly
+## 📋 Daftar Isi
 
-### 💬 Social (3 Modules)
-- **Chat Spam** - Spam message ke chat dengan delay
-- **Chat Flood** - Flood chat dengan random messages
-- **Whisper Spam** - Spam whisper ke player tertentu
+- [Features](#-features)
+- [Installation](#-installation)
+- [Modules List](#-modules-list)
+- [Module Categories](#-module-categories)
+- [Usage Guide](#-usage-guide)
+- [Keybinds](#%EF%B8%8F-keybinds)
+- [Screenshots](#-screenshots)
+- [FAQ](#-faq)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-### 😈 Trolling (7 Modules)
-- **Fling Player** - Lempar player lain dengan spin attack
-- **Push Player** - Dorong-dorong player dengan hitbox gede
-- **Attach Player** - Nempel ke player lain (ride)
-- **Spam Nearby** - Spam emote di sekitar player
-- **Body Block** - Block jalan orang dengan invisible wall
-- **Follow Bot** - Ikutin player kemana-mana
+---
 
-## 📦 Installation
+## ✨ Features
 
-### Method 1: Direct Execute (Recommended)
+### 🎨 Modern UI Design
+- **Compact & Clean** - Ukuran 350x500px, tidak menghalangi gameplay
+- **Dark Theme Premium** - Background gelap dengan accent ungu yang elegan
+- **Rainbow Glow Effect** - Efek cahaya yang berubah warna otomatis
+- **Smooth Animations** - Semua transisi halus dan responsif
+- **Drag & Drop** - Bisa dipindah kemana saja sesuai keinginan
+
+### 🚀 Powerful Features
+- ✅ 44 Modules siap pakai
+- ✅ 10 Kategori terorganisir
+- ✅ Search function untuk cari module cepat
+- ✅ Toggle ON/OFF dengan status real-time
+- ✅ Icon untuk setiap module
+- ✅ Minimize function untuk hemat space
+- ✅ Auto-load dari GitHub
+- ✅ Error handling yang baik
+
+### 🛡️ Keamanan
+- Semua module dilengkapi error handling
+- Proper cleanup saat stop module
+- Character respawn support
+- No memory leak
+
+---
+
+## 📥 Installation
+
+### Method 1: Loadstring (Recommended)
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscript/main/main.lua"))()
 ```
 
-### Method 2: Manual Download
-1. Download `main.lua`
-2. Paste ke executor lu (KRNL, Synapse, dll)
-3. Execute!
+### Method 2: Manual Install
+1. Download file `loader.lua`
+2. Copy paste ke executor
+3. Execute script
 
-## 🎮 Usage
+### Method 3: Auto Execute
+1. Paste loadstring ke folder `autoexec` executor kamu
+2. Script akan auto-run setiap join game
 
-1. Execute script `main.lua`
-2. GUI bakal muncul di layar
-3. Pilih category yang lu mau (Movement, Character, Animation, dll)
-4. Klik module yang mau lu aktifin
-5. Klik lagi buat matiin module
+---
 
-**Toggle System:**
-- Klik 1x = Module ON
-- Klik 2x = Module OFF
+## 📦 Modules List
 
-## 🔍 Features Breakdown
+### 🏃 Movement (12 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| ⚡ | Speed Hack | Kecepatan lari unlimited | ✅ |
+| 🚀 | Jump Power | Lompat lebih tinggi | ✅ |
+| 🦘 | Infinite Jump | Lompat tanpa batas di udara | ✅ |
+| ✈️ | Fly/Levitate | Terbang bebas | ✅ |
+| 👻 | No Clip | Tembus tembok | ✅ |
+| 🌀 | Teleport Spam | Spam teleport cepat | ✅ |
+| ☁️ | Walk on Air | Jalan di udara | ✅ |
+| ⛸️ | Ice Skate | Meluncur seperti ice skating | ✅ |
+| 🌙 | Moonwalk | Jalan mundur kayak Michael Jackson | ✅ |
+| 🧗 | Climb Boost | Panjat lebih cepat | ✅ |
+| 🚁 | Speed Fly | Fly dengan kecepatan tinggi | ✅ |
 
-### Speed Hack
-```lua
--- Default speed: 50
--- Bisa diatur dari 16-200
--- Work di hampir semua game
+### 👤 Character (7 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 🛡️ | God Mode | Kebal damage | ✅ |
+| 💫 | Fling Self | Lempar diri sendiri | ✅ |
+| 🌪️ | Spin Character | Putar character | ✅ |
+| 🤸 | Ragdoll Spam | Spam ragdoll animation | ✅ |
+| 💺 | Sit Spam | Spam duduk | ✅ |
+| 🪂 | Anti Fall Damage | Tidak kena damage jatuh | ✅ |
+| 💪 | Infinite Stamina | Stamina unlimited | ✅ |
+
+### 🎬 Animation (5 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 💃 | Emote Spam | Spam emote | ✅ |
+| ⏩ | Animation Speed | Ubah kecepatan animasi | ✅ |
+| 🔀 | Animation Glitch | Glitch animasi | ✅ |
+| 🎭 | Pose Modes | Mode pose keren | ✅ |
+| ❄️ | Animation Freeze | Freeze animasi | ✅ |
+
+### ⚔️ Combat (5 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 🔫 | Rapid Fire | Tembak super cepat | ✅ |
+| 🔄 | Instant Reload | Reload instant | ✅ |
+| 📦 | Hitbox Expander | Perbesar hitbox musuh | ✅ |
+| 🎯 | Silent Aim | Auto aim diam-diam | ✅ |
+
+### 💭 Social (3 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 💬 | Chat Spam | Spam chat | ✅ |
+| 🌊 | Chat Flood | Flood chat | ✅ |
+| 🤫 | Whisper Spam | Spam whisper | ✅ |
+
+### 😈 Trolling (6 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 🎯 | Fling Player | Lempar player lain | ✅ |
+| 👊 | Push Player | Dorong player | ✅ |
+| 🔗 | Attach Player | Nempel ke player | ✅ |
+| 📢 | Spam Nearby | Spam ke player terdekat | ✅ |
+| 🚧 | Body Block | Block jalan player | ✅ |
+| 🤖 | Follow Bot | Bot yang ngikutin | ✅ |
+
+### 🔧 Utility (2 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| ⏰ | Anti AFK | Anti kick AFK | ✅ |
+| 🔓 | Anti Cheat Bypass | Bypass anti cheat | ✅ |
+
+### 👁️ Visual (3 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 👁️ | ESP Wallhack | Lihat player lewat tembok | ✅ |
+| 🔍 | X-Ray Vision | Tembus pandang object | ✅ |
+| 💡 | Fullbright | Terang penuh tanpa bayangan | ✅ |
+
+### 🤖 Automation (3 Modules)
+| Icon | Module | Description | Status |
+|------|--------|-------------|--------|
+| 🌾 | Auto Farm | Farm otomatis | ✅ |
+| 💰 | Auto Collect | Collect item otomatis | ✅ |
+| 🖱️ | Auto Click | Klik otomatis | ✅ |
+
+---
+
+## 🎮 Usage Guide
+
+### Membuka Script Hub
+1. Execute loadstring di executor
+2. GUI akan muncul di kanan atas layar
+3. Tunggu beberapa detik sampai semua module loaded
+
+### Menggunakan Module
+1. **Search Module**: Ketik nama module di search box
+2. **Filter Category**: Klik kategori yang diinginkan
+3. **Activate Module**: Klik tombol OFF untuk mengaktifkan
+4. **Deactivate Module**: Klik tombol ON untuk mematikan
+
+### Tips & Tricks
+- 💡 Gunakan minimize button untuk hemat space
+- 💡 Drag GUI ke posisi yang nyaman
+- 💡 Matikan module sebelum leave game
+- 💡 Jangan aktifkan terlalu banyak module sekaligus
+- 💡 Beberapa module tidak compatible dengan game tertentu
+
+---
+
+## ⌨️ Keybinds
+
+| Key | Action |
+|-----|--------|
+| `W/A/S/D` | Kontrol movement saat fly |
+| `Space` | Naik saat fly |
+| `Shift` | Turun saat fly |
+| `Left Click` | Activate silent aim |
+
+---
+
+## 📸 Screenshots
+
+### Main Interface
+```
+┌─────────────────────────────────┐
+│  ⚡ ANOS HUB                    │
+│  [−] [×]                        │
+├─────────────────────────────────┤
+│  🔍 Cari module...              │
+├─────────────────────────────────┤
+│ 📋 🏃 👤 🎬 ⚔️ 💭 😈 🔧 👁️ 🤖 │
+├─────────────────────────────────┤
+│  ⚡ Speed Hack        [OFF]     │
+│  🚀 Jump Power        [OFF]     │
+│  🦘 Infinite Jump     [OFF]     │
+│  🛡️ God Mode          [ON]      │
+│  ✈️ Fly/Levitate      [ON]      │
+│  ...                            │
+└─────────────────────────────────┘
 ```
 
-### God Mode
-```lua
--- Multiple methods:
--- 1. Health Lock
--- 2. Infinite Health
--- 3. Disable damage connections
-```
+---
 
-### Fly Mode
-```lua
--- Controls:
--- W/A/S/D - Move horizontal
--- Space - Move up
--- Shift - Move down
--- Default speed: 50
-```
+## ❓ FAQ
 
-### Fling Player
-```lua
--- Spin speed: 500000
--- Collision enabled
--- Works on players within 15 studs
--- VISIBLE to everyone!
-```
+### Q: Apakah script ini aman?
+A: Script ini open source dan bisa di-review. Gunakan dengan tanggung jawab sendiri.
 
-## 🛠️ Compatibility
+### Q: Kenapa module tidak berfungsi?
+A: Beberapa game punya anti-cheat yang kuat. Coba module lain atau game lain.
 
-✅ **Supported Executors:**
-- KRNL
-- Synapse X/Z
-- Script-Ware
-- Fluxus
-- Arceus X (Mobile)
-- Delta (Mobile)
+### Q: Bisa banned gak?
+A: Semua exploit berisiko banned. Gunakan di alt account untuk safety.
 
-✅ **Supported Platforms:**
-- PC (Windows/Mac)
-- Mobile (Android/iOS)
-- Tablet
+### Q: Module Error terus?
+A: Pastikan koneksi internet stabil karena module di-load dari GitHub.
 
-✅ **Game Compatibility:**
-- Most FE (Filtering Enabled) games
-- Non-FE games (full features)
-- Tested on 50+ popular games
+### Q: Cara update script?
+A: Script auto-load dari GitHub, jadi selalu update otomatis.
 
-## ⚠️ Disclaimers
+### Q: Support mobile?
+A: Ya, support mobile executor yang support loadstring.
 
-⚠️ **Gunakan dengan bijak!** Script ini buat personal use dan learning purposes aja.
+### Q: Cara request module baru?
+A: Buka issue di GitHub atau contact developer.
 
-⚠️ **Resiko:**
-- Bisa di-kick dari game
-- Bisa di-ban permanent
-- Use at your own risk
-
-⚠️ **Jangan:**
-- Ruin experience orang lain
-- Spam chat vulgar
-- Harass players
-- Exploit competitive games
-
-## 📱 Mobile Support
-
-Script ini **100% mobile-friendly** dengan:
-- Large touch-friendly buttons
-- Drag & drop GUI
-- Minimize/maximize window
-- No keyboard required
-- Optimized for small screens
-
-## 🐛 Known Issues
-
-1. **Fly Mode** - Kadang lag di low-end device
-2. **Fling Player** - Ga work di beberapa game yang pake anti-exploit kuat
-3. **Chat Modules** - Beberapa game pake custom chat system
-4. **Follow Bot** - Pathfinding kadang stuck di obstacle
-
-## 📝 Changelog
-
-### v1.0.0 (Current)
-- Initial release
-- 32 modules available
-- Mobile support
-- Modular system
-- Clean GUI
+---
 
 ## 🤝 Contributing
 
-Mau contribute? Silakan!
+Kontribusi sangat diterima! Cara berkontribusi:
 
-1. Fork repo ini
+1. Fork repository ini
 2. Create branch baru (`git checkout -b feature/AmazingFeature`)
 3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## 📧 Contact
+### Module Development Guide
+```lua
+local Module = {}
 
-- **GitHub:** [@anos-rgb](https://github.com/anos-rgb)
-- **Discord:** Coming soon...
-- **Issues:** [GitHub Issues](https://github.com/anos-rgb/anos-script/issues)
+function Module.start()
+    -- Code untuk start module
+end
 
-## ⭐ Support
+function Module.stop()
+    -- Code untuk stop module
+    -- Jangan lupa cleanup connections!
+end
 
-Kalo script ini berguna, jangan lupa:
-- ⭐ Star repo ini
-- 🔄 Share ke temen-temen
-- 🐛 Report bugs via Issues
-- 💡 Suggest new features
+return Module
+```
 
-## 📜 License
+---
+
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Credits
+---
 
-- **Creator:** anos-rgb
-- **Special Thanks:** Semua yang udah test dan kasih feedback
+## 🔗 Links
+
+- **GitHub Repository**: [anos-rgb/anos-allscript](https://github.com/anos-rgb/anos-allscript)
+- **Discord Server**: Coming Soon
+- **YouTube Tutorial**: Coming Soon
 
 ---
 
-**Made by anos-rgb**
+## ⚠️ Disclaimer
 
-*"Script terbaik buat pengalaman Roblox yang lebih seru!"*
+Script ini dibuat untuk tujuan edukasi dan testing. Developer tidak bertanggung jawab atas:
+- Account yang terkena ban
+- Kerusakan game
+- Penyalahgunaan script
+- Kerugian apapun yang timbul
 
----
-
-## 💎 Premium Version (Coming Soon)
-
-- Auto-updater
-- More modules
-- Custom keybinds
-- Save/load configs
-- Priority support
-- No ads
+**USE AT YOUR OWN RISK!**
 
 ---
 
-**⚡ Last Updated:** 2025-10-17
-**⚡ Version:** 1.0.0
-**⚡ Total Modules:** 32
+## 🌟 Support
+
+Kalau script ini membantu, berikan ⭐ di GitHub!
+
+Made by anos.py
+
+---
+
+<div align="center">
+
+**© 2025 ANOS Script Hub. All Rights Reserved.**
+
+[⬆ Back to Top](#-anos-script-hub)
+
+</div>
