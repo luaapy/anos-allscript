@@ -55,7 +55,6 @@ local Modules = {
     {name = "Hitbox Expander", file = "hitbox-expander.lua", category = "Combat", icon = "📦", color = Color3.fromRGB(255, 99, 71)},
     {name = "Silent Aim", file = "silent-aim.lua", category = "Combat", icon = "🎯", color = Color3.fromRGB(220, 20, 60)},
     {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪", color = Color3.fromRGB(255, 140, 0)}
-}
 
 local HubGui = Instance.new("ScreenGui")
 HubGui.Name = "ANOS_PREMIUM_HUB"
@@ -67,6 +66,219 @@ local BlurEffect = Instance.new("BlurEffect")
 BlurEffect.Name = "HubBlur"
 BlurEffect.Size = 0
 BlurEffect.Parent = game.Lighting
+
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = HubGui
+ToggleButton.AnchorPoint = Vector2.new(0.5, 0.5)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+ToggleButton.BorderSizePixel = 0
+ToggleButton.Position = UDim2.new(0, 80, 0, 80)
+ToggleButton.Size = UDim2.new(0, 70, 0, 70)
+ToggleButton.Font = Enum.Font.GothamBold
+ToggleButton.Text = "ANOS"
+ToggleButton.TextColor3 = Color3.fromRGB(0, 255, 255)
+ToggleButton.TextSize = 12
+ToggleButton.ZIndex = 100
+
+local ToggleCorner = Instance.new("UICorner")
+ToggleCorner.CornerRadius = UDim.new(1, 0)
+ToggleCorner.Parent = ToggleButton
+
+local ToggleStroke = Instance.new("UIStroke")
+ToggleStroke.Color = Color3.fromRGB(0, 255, 255)
+ToggleStroke.Thickness = 3
+ToggleStroke.Transparency = 0.3
+ToggleStroke.Parent = ToggleButton
+
+local ToggleGradient = Instance.new("UIGradient")
+ToggleGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(20, 20, 30)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 10, 15))
+}
+ToggleGradient.Rotation = 45
+ToggleGradient.Parent = ToggleButton
+
+local OrbitContainer = Instance.new("Frame")
+OrbitContainer.Name = "OrbitContainer"
+OrbitContainer.Parent = ToggleButton
+OrbitContainer.AnchorPoint = Vector2.new(0.5, 0.5)
+OrbitContainer.BackgroundTransparency = 1
+OrbitContainer.Position = UDim2.new(0.5, 0, 0.5, 0)
+OrbitContainer.Size = UDim2.new(1, 20, 1, 20)
+OrbitContainer.ZIndex = 99
+
+for i = 1, 3 do
+    local orbitDot = Instance.new("Frame")
+    orbitDot.Name = "OrbitDot" .. i
+    orbitDot.Parent = OrbitContainer
+    orbitDot.AnchorPoint = Vector2.new(0.5, 0.5)
+    orbitDot.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+    orbitDot.BorderSizePixel = 0
+    orbitDot.Position = UDim2.new(0.5, 0, 0, 0)
+    orbitDot.Size = UDim2.new(0, 8, 0, 8)
+    orbitDot.ZIndex = 99
+    
+    local dotCorner = Instance.new("UICorner")
+    dotCorner.CornerRadius = UDim.new(1, 0)
+    dotCorner.Parent = orbitDot
+    
+    local dotGlow = Instance.new("ImageLabel")
+    dotGlow.Name = "Glow"
+    dotGlow.Parent = orbitDot
+    dotGlow.AnchorPoint = Vector2.new(0.5, 0.5)
+    dotGlow.BackgroundTransparency = 1
+    dotGlow.Position = UDim2.new(0.5, 0, 0.5, 0)
+    dotGlow.Size = UDim2.new(2, 0, 2, 0)
+    dotGlow.ZIndex = 98
+    dotGlow.Image = "rbxassetid://6014261993"
+    dotGlow.ImageColor3 = Color3.fromRGB(0, 255, 255)
+    dotGlow.ImageTransparency = 0.3
+    dotGlow.ScaleType = Enum.ScaleType.Slice
+    dotGlow.SliceCenter = Rect.new(99, 99, 99, 99)
+end
+
+local RingEffect = Instance.new("ImageLabel")
+RingEffect.Name = "RingEffect"
+RingEffect.Parent = ToggleButton
+RingEffect.AnchorPoint = Vector2.new(0.5, 0.5)
+RingEffect.BackgroundTransparency = 1
+RingEffect.Position = UDim2.new(0.5, 0, 0.5, 0)
+RingEffect.Size = UDim2.new(1.4, 0, 1.4, 0)
+RingEffect.ZIndex = 98
+RingEffect.Image = "rbxassetid://6014261993"
+RingEffect.ImageColor3 = Color3.fromRGB(138, 43, 226)
+RingEffect.ImageTransparency = 0.7
+RingEffect.ScaleType = Enum.ScaleType.Slice
+RingEffect.SliceCenter = Rect.new(99, 99, 99, 99)
+
+task.spawn(function()
+    while task.wait() do
+        pcall(function()
+            for i, dot in pairs(OrbitContainer:GetChildren()) do
+                if dot:IsA("Frame") then
+                    local angle = (tick() * 2 + (i - 1) * (360 / 3)) % 360
+                    local rad = math.rad(angle)
+                    local distance = 45
+                    
+                    local x = math.cos(rad) * distance
+                    local y = math.sin(rad) * distance
+                    
+                    dot.Position = UDim2.new(0.5, x, 0.5, y)
+                    
+                    local hue = (tick() + i * 0.3) % 1
+                    local color = Color3.fromHSV(hue, 0.8, 1)
+                    dot.BackgroundColor3 = color
+                    
+                    if dot:FindFirstChild("Glow") then
+                        dot.Glow.ImageColor3 = color
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+task.spawn(function()
+    while task.wait(0.05) do
+        pcall(function()
+            local hue = tick() % 3 / 3
+            local color = Color3.fromHSV(hue, 0.8, 1)
+            TweenService:Create(ToggleStroke, TweenInfo.new(0.5), {Color = color}):Play()
+            TweenService:Create(ToggleButton, TweenInfo.new(0.5), {TextColor3 = color}):Play()
+        end)
+    end
+end)
+
+task.spawn(function()
+    while task.wait(0.02) do
+        pcall(function()
+            RingEffect.Rotation = (RingEffect.Rotation + 1) % 360
+        end)
+    end
+end)
+
+local guiVisible = false
+
+ToggleButton.MouseEnter:Connect(function()
+    TweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Back), {
+        Size = UDim2.new(0, 80, 0, 80)
+    }):Play()
+    TweenService:Create(ToggleStroke, TweenInfo.new(0.3), {Thickness = 4, Transparency = 0}):Play()
+    TweenService:Create(RingEffect, TweenInfo.new(0.3), {
+        Size = UDim2.new(1.6, 0, 1.6, 0),
+        ImageTransparency = 0.5
+    }):Play()
+end)
+
+ToggleButton.MouseLeave:Connect(function()
+    TweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Back), {
+        Size = UDim2.new(0, 70, 0, 70)
+    }):Play()
+    TweenService:Create(ToggleStroke, TweenInfo.new(0.3), {Thickness = 3, Transparency = 0.3}):Play()
+    TweenService:Create(RingEffect, TweenInfo.new(0.3), {
+        Size = UDim2.new(1.4, 0, 1.4, 0),
+        ImageTransparency = 0.7
+    }):Play()
+end)
+
+ToggleButton.MouseButton1Click:Connect(function()
+    guiVisible = not guiVisible
+    
+    TweenService:Create(ToggleButton, TweenInfo.new(0.2, Enum.EasingStyle.Elastic), {
+        Size = UDim2.new(0, 60, 0, 60)
+    }):Play()
+    task.wait(0.1)
+    TweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Elastic), {
+        Size = UDim2.new(0, 70, 0, 70)
+    }):Play()
+    
+    if guiVisible then
+        MainContainer.Visible = true
+        TweenService:Create(BlurEffect, TweenInfo.new(0.5), {Size = 10}):Play()
+        TweenService:Create(MainContainer, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 900, 0, 550)
+        }):Play()
+    else
+        TweenService:Create(BlurEffect, TweenInfo.new(0.5), {Size = 0}):Play()
+        TweenService:Create(MainContainer, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+            Size = UDim2.new(0, 0, 0, 0)
+        }):Play()
+        task.wait(0.5)
+        MainContainer.Visible = false
+    end
+end)
+
+local toggleDragToggle = nil
+local toggleDragStart = nil
+local toggleStartPos = nil
+
+local function updateToggleInput(input)
+    local delta = input.Position - toggleDragStart
+    local position = UDim2.new(toggleStartPos.X.Scale, toggleStartPos.X.Offset + delta.X, toggleStartPos.Y.Scale, toggleStartPos.Y.Offset + delta.Y)
+    ToggleButton.Position = position
+end
+
+ToggleButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        toggleDragToggle = true
+        toggleDragStart = input.Position
+        toggleStartPos = ToggleButton.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                toggleDragToggle = false
+            end
+        end)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        if toggleDragToggle then
+            updateToggleInput(input)
+        end
+    end
+end)
 
 local MainContainer = Instance.new("Frame")
 MainContainer.Name = "MainContainer"
