@@ -113,12 +113,24 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | ❄️ | Animation Freeze | Freeze animasi | ✅ |
 
 ### ⚔️ Combat (5 Modules)
+### ⚔️ Combat Modules
+
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 🔫 | Rapid Fire | Tembak super cepat | ✅ |
 | 🔄 | Instant Reload | Reload instant | ✅ |
 | 📦 | Hitbox Expander | Perbesar hitbox musuh | ✅ |
 | 🎯 | Silent Aim | Auto aim diam-diam | ✅ |
+| 🎯 | Aimbot Smooth | Smooth aim ke target saat hold right click | ✅ |
+| 🛡️ | Auto Parry | Otomatis block serangan musuh & projectile | ✅ |
+| 💥 | Damage Multiplier | Damage dikali 2x lipat | ✅ |
+| ⚡ | Kill Aura | Auto attack musuh dalam radius 20 studs | ✅ |
+| 💨 | Auto Dodge | Otomatis dodge serangan dengan dash samping | ✅ |
+| 💢 | Critical Hit Force | 100% critical hit chance | ✅ |
+| 🎯 | Reach Extender | Extend jangkauan senjata jadi 25 studs | ✅ |
+| 💚 | Auto Heal | Auto heal saat HP < 70% | ✅ |
+| 🔥 | Weapon Spam | Spam weapon super cepat | ✅ |
+| 🚫 | Anti Ragdoll | Prevent ragdoll/stun dari serangan | ✅ |
 
 ### 💭 Social (3 Modules)
 | Icon | Module | Description | Status |
