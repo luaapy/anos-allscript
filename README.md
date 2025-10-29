@@ -112,8 +112,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🎭 | Pose Modes | Mode pose keren | ✅ |
 | ❄️ | Animation Freeze | Freeze animasi | ✅ |
 
-### ⚔️ Combat (5 Modules)
-### ⚔️ Combat Modules
+### ⚔️ Combat (14 Modules)
 
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
