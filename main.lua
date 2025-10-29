@@ -55,6 +55,7 @@ local Modules = {
     {name = "Hitbox Expander", file = "hitbox-expander.lua", category = "Combat", icon = "📦", color = Color3.fromRGB(255, 99, 71)},
     {name = "Silent Aim", file = "silent-aim.lua", category = "Combat", icon = "🎯", color = Color3.fromRGB(220, 20, 60)},
     {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪", color = Color3.fromRGB(255, 140, 0)}
+}
 
 local HubGui = Instance.new("ScreenGui")
 HubGui.Name = "ANOS_PREMIUM_HUB"
