@@ -12,176 +12,380 @@ local ModuleConnections = {}
 local GitHubBase = "https://raw.githubusercontent.com/anos-rgb/anos-allscript/main/modules/"
 
 local Modules = {
-    {name = "Speed Hack", file = "speed-hack.lua", category = "Movement", icon = "⚡"},
-    {name = "Jump Power", file = "jump-power.lua", category = "Movement", icon = "🚀"},
-    {name = "Infinite Jump", file = "infinite-jump.lua", category = "Movement", icon = "🦘"},
-    {name = "God Mode", file = "god-mode.lua", category = "Character", icon = "🛡️"},
-    {name = "Fly/Levitate", file = "fly.lua", category = "Movement", icon = "✈️"},
-    {name = "No Clip", file = "noclip.lua", category = "Movement", icon = "👻"},
-    {name = "Teleport Spam", file = "teleport-spam.lua", category = "Movement", icon = "🌀"},
-    {name = "Fling Self", file = "fling-self.lua", category = "Character", icon = "💫"},
-    {name = "Spin Character", file = "spin-character.lua", category = "Character", icon = "🌪️"},
-    {name = "Walk on Air", file = "walk-air.lua", category = "Movement", icon = "☁️"},
-    {name = "Ice Skate", file = "ice-skate.lua", category = "Movement", icon = "⛸️"},
-    {name = "Moonwalk", file = "moonwalk.lua", category = "Movement", icon = "🌙"},
-    {name = "Ragdoll Spam", file = "ragdoll-spam.lua", category = "Character", icon = "🤸"},
-    {name = "Sit Spam", file = "sit-spam.lua", category = "Character", icon = "💺"},
-    {name = "Climb Boost", file = "climb-boost.lua", category = "Movement", icon = "🧗"},
-    {name = "Anti Fall Damage", file = "anti-fall.lua", category = "Character", icon = "🪂"},
-    {name = "Emote Spam", file = "emote-spam.lua", category = "Animation", icon = "💃"},
-    {name = "Animation Speed", file = "animation-speed.lua", category = "Animation", icon = "⏩"},
-    {name = "Animation Glitch", file = "animation-glitch.lua", category = "Animation", icon = "🔀"},
-    {name = "Pose Modes", file = "pose-modes.lua", category = "Animation", icon = "🎭"},
-    {name = "Animation Freeze", file = "animation-freeze.lua", category = "Animation", icon = "❄️"},
-    {name = "Rapid Fire", file = "rapid-fire.lua", category = "Combat", icon = "🔫"},
-    {name = "Instant Reload", file = "instant-reload.lua", category = "Combat", icon = "🔄"},
-    {name = "Chat Spam", file = "chat-spam.lua", category = "Social", icon = "💬"},
-    {name = "Chat Flood", file = "chat-flood.lua", category = "Social", icon = "🌊"},
-    {name = "Whisper Spam", file = "whisper-spam.lua", category = "Social", icon = "🤫"},
-    {name = "Fling Player", file = "fling-player.lua", category = "Trolling", icon = "🎯"},
-    {name = "Push Player", file = "push-player.lua", category = "Trolling", icon = "👊"},
-    {name = "Attach Player", file = "attach-player.lua", category = "Trolling", icon = "🔗"},
-    {name = "Spam Nearby", file = "spam-nearby.lua", category = "Trolling", icon = "📢"},
-    {name = "Body Block", file = "body-block.lua", category = "Trolling", icon = "🚧"},
-    {name = "Follow Bot", file = "follow-bot.lua", category = "Trolling", icon = "🤖"},
-    {name = "Anti AFK", file = "anti-afk.lua", category = "Utility", icon = "⏰"},
-    {name = "Anti Cheat Bypass", file = "anti-cheat-bypass.lua", category = "Utility", icon = "🔓"},
-    {name = "ESP Wallhack", file = "esp-wallhack.lua", category = "Visual", icon = "👁️"},
-    {name = "X-Ray Vision", file = "xray-vision.lua", category = "Visual", icon = "🔍"},
-    {name = "Fullbright", file = "fullbright.lua", category = "Visual", icon = "💡"},
-    {name = "Auto Farm", file = "auto-farm.lua", category = "Automation", icon = "🌾"},
-    {name = "Auto Collect", file = "auto-collect.lua", category = "Automation", icon = "💰"},
-    {name = "Auto Click", file = "auto-click.lua", category = "Automation", icon = "🖱️"},
-    {name = "Hitbox Expander", file = "hitbox-expander.lua", category = "Combat", icon = "📦"},
-    {name = "Silent Aim", file = "silent-aim.lua", category = "Combat", icon = "🎯"},
-    {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪"}
+    {name = "Speed Hack", file = "speed-hack.lua", category = "Movement", icon = "⚡", color = Color3.fromRGB(255, 215, 0)},
+    {name = "Jump Power", file = "jump-power.lua", category = "Movement", icon = "🚀", color = Color3.fromRGB(0, 191, 255)},
+    {name = "Infinite Jump", file = "infinite-jump.lua", category = "Movement", icon = "🦘", color = Color3.fromRGB(255, 105, 180)},
+    {name = "God Mode", file = "god-mode.lua", category = "Character", icon = "🛡️", color = Color3.fromRGB(255, 69, 0)},
+    {name = "Fly/Levitate", file = "fly.lua", category = "Movement", icon = "✈️", color = Color3.fromRGB(135, 206, 250)},
+    {name = "No Clip", file = "noclip.lua", category = "Movement", icon = "👻", color = Color3.fromRGB(186, 85, 211)},
+    {name = "Teleport Spam", file = "teleport-spam.lua", category = "Movement", icon = "🌀", color = Color3.fromRGB(64, 224, 208)},
+    {name = "Fling Self", file = "fling-self.lua", category = "Character", icon = "💫", color = Color3.fromRGB(255, 20, 147)},
+    {name = "Spin Character", file = "spin-character.lua", category = "Character", icon = "🌪️", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Walk on Air", file = "walk-air.lua", category = "Movement", icon = "☁️", color = Color3.fromRGB(173, 216, 230)},
+    {name = "Ice Skate", file = "ice-skate.lua", category = "Movement", icon = "⛸️", color = Color3.fromRGB(176, 224, 230)},
+    {name = "Moonwalk", file = "moonwalk.lua", category = "Movement", icon = "🌙", color = Color3.fromRGB(255, 255, 224)},
+    {name = "Ragdoll Spam", file = "ragdoll-spam.lua", category = "Character", icon = "🤸", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Sit Spam", file = "sit-spam.lua", category = "Character", icon = "💺", color = Color3.fromRGB(220, 20, 60)},
+    {name = "Climb Boost", file = "climb-boost.lua", category = "Movement", icon = "🧗", color = Color3.fromRGB(34, 139, 34)},
+    {name = "Anti Fall Damage", file = "anti-fall.lua", category = "Character", icon = "🪂", color = Color3.fromRGB(30, 144, 255)},
+    {name = "Emote Spam", file = "emote-spam.lua", category = "Animation", icon = "💃", color = Color3.fromRGB(255, 182, 193)},
+    {name = "Animation Speed", file = "animation-speed.lua", category = "Animation", icon = "⏩", color = Color3.fromRGB(255, 99, 71)},
+    {name = "Animation Glitch", file = "animation-glitch.lua", category = "Animation", icon = "🔀", color = Color3.fromRGB(147, 112, 219)},
+    {name = "Pose Modes", file = "pose-modes.lua", category = "Animation", icon = "🎭", color = Color3.fromRGB(218, 112, 214)},
+    {name = "Animation Freeze", file = "animation-freeze.lua", category = "Animation", icon = "❄️", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Rapid Fire", file = "rapid-fire.lua", category = "Combat", icon = "🔫", color = Color3.fromRGB(255, 69, 0)},
+    {name = "Instant Reload", file = "instant-reload.lua", category = "Combat", icon = "🔄", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Chat Spam", file = "chat-spam.lua", category = "Social", icon = "💬", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Chat Flood", file = "chat-flood.lua", category = "Social", icon = "🌊", color = Color3.fromRGB(65, 105, 225)},
+    {name = "Whisper Spam", file = "whisper-spam.lua", category = "Social", icon = "🤫", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Fling Player", file = "fling-player.lua", category = "Trolling", icon = "🎯", color = Color3.fromRGB(220, 20, 60)},
+    {name = "Push Player", file = "push-player.lua", category = "Trolling", icon = "👊", color = Color3.fromRGB(255, 0, 0)},
+    {name = "Attach Player", file = "attach-player.lua", category = "Trolling", icon = "🔗", color = Color3.fromRGB(0, 206, 209)},
+    {name = "Spam Nearby", file = "spam-nearby.lua", category = "Trolling", icon = "📢", color = Color3.fromRGB(255, 215, 0)},
+    {name = "Body Block", file = "body-block.lua", category = "Trolling", icon = "🚧", color = Color3.fromRGB(255, 165, 0)},
+    {name = "Follow Bot", file = "follow-bot.lua", category = "Trolling", icon = "🤖", color = Color3.fromRGB(70, 130, 180)},
+    {name = "Anti AFK", file = "anti-afk.lua", category = "Utility", icon = "⏰", color = Color3.fromRGB(32, 178, 170)},
+    {name = "Anti Cheat Bypass", file = "anti-cheat-bypass.lua", category = "Utility", icon = "🔓", color = Color3.fromRGB(255, 215, 0)},
+    {name = "ESP Wallhack", file = "esp-wallhack.lua", category = "Visual", icon = "👁️", color = Color3.fromRGB(0, 255, 127)},
+    {name = "X-Ray Vision", file = "xray-vision.lua", category = "Visual", icon = "🔍", color = Color3.fromRGB(50, 205, 50)},
+    {name = "Fullbright", file = "fullbright.lua", category = "Visual", icon = "💡", color = Color3.fromRGB(255, 255, 0)},
+    {name = "Auto Farm", file = "auto-farm.lua", category = "Automation", icon = "🌾", color = Color3.fromRGB(34, 139, 34)},
+    {name = "Auto Collect", file = "auto-collect.lua", category = "Automation", icon = "💰", color = Color3.fromRGB(255, 215, 0)},
+    {name = "Auto Click", file = "auto-click.lua", category = "Automation", icon = "🖱️", color = Color3.fromRGB(169, 169, 169)},
+    {name = "Hitbox Expander", file = "hitbox-expander.lua", category = "Combat", icon = "📦", color = Color3.fromRGB(255, 99, 71)},
+    {name = "Silent Aim", file = "silent-aim.lua", category = "Combat", icon = "🎯", color = Color3.fromRGB(220, 20, 60)},
+    {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪", color = Color3.fromRGB(255, 140, 0)}
 }
 
 local HubGui = Instance.new("ScreenGui")
-HubGui.Name = "ANOS_MODERN_HUB"
+HubGui.Name = "ANOS_PREMIUM_HUB"
 HubGui.Parent = PlayerGui
 HubGui.ResetOnSpawn = false
 HubGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local MainFrame = Instance.new("Frame")
-MainFrame.Name = "MainFrame"
-MainFrame.Parent = HubGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
-MainFrame.BackgroundTransparency = 0.05
-MainFrame.BorderSizePixel = 0
-MainFrame.Position = UDim2.new(1, -370, 0, 20)
-MainFrame.Size = UDim2.new(0, 350, 0, 500)
-MainFrame.Active = true
-MainFrame.ClipsDescendants = true
+local BlurEffect = Instance.new("BlurEffect")
+BlurEffect.Name = "HubBlur"
+BlurEffect.Size = 0
+BlurEffect.Parent = game.Lighting
 
-local MainCorner = Instance.new("UICorner")
-MainCorner.CornerRadius = UDim.new(0, 16)
-MainCorner.Parent = MainFrame
+local MainContainer = Instance.new("Frame")
+MainContainer.Name = "MainContainer"
+MainContainer.Parent = HubGui
+MainContainer.AnchorPoint = Vector2.new(0.5, 0.5)
+MainContainer.BackgroundTransparency = 1
+MainContainer.Position = UDim2.new(0.5, 0, 0.5, 0)
+MainContainer.Size = UDim2.new(0, 900, 0, 550)
 
-local GlowEffect = Instance.new("ImageLabel")
-GlowEffect.Name = "Glow"
-GlowEffect.Parent = MainFrame
-GlowEffect.BackgroundTransparency = 1
-GlowEffect.Position = UDim2.new(0, -15, 0, -15)
-GlowEffect.Size = UDim2.new(1, 30, 1, 30)
-GlowEffect.ZIndex = 0
-GlowEffect.Image = "rbxassetid://6014261993"
-GlowEffect.ImageColor3 = Color3.fromRGB(138, 43, 226)
-GlowEffect.ImageTransparency = 0.7
-GlowEffect.ScaleType = Enum.ScaleType.Slice
-GlowEffect.SliceCenter = Rect.new(99, 99, 99, 99)
+local LeftPanel = Instance.new("Frame")
+LeftPanel.Name = "LeftPanel"
+LeftPanel.Parent = MainContainer
+LeftPanel.BackgroundColor3 = Color3.fromRGB(10, 10, 15)
+LeftPanel.BackgroundTransparency = 0.1
+LeftPanel.BorderSizePixel = 0
+LeftPanel.Size = UDim2.new(0, 250, 1, 0)
+
+local LeftCorner = Instance.new("UICorner")
+LeftCorner.CornerRadius = UDim.new(0, 20)
+LeftCorner.Parent = LeftPanel
+
+local LeftGradient = Instance.new("UIGradient")
+LeftGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(20, 20, 30)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 10, 15))
+}
+LeftGradient.Rotation = 45
+LeftGradient.Parent = LeftPanel
+
+local LeftStroke = Instance.new("UIStroke")
+LeftStroke.Color = Color3.fromRGB(0, 255, 255)
+LeftStroke.Thickness = 2
+LeftStroke.Transparency = 0.5
+LeftStroke.Parent = LeftPanel
+
+local LogoContainer = Instance.new("Frame")
+LogoContainer.Name = "LogoContainer"
+LogoContainer.Parent = LeftPanel
+LogoContainer.BackgroundTransparency = 1
+LogoContainer.Position = UDim2.new(0, 0, 0, 20)
+LogoContainer.Size = UDim2.new(1, 0, 0, 80)
+
+local LogoText = Instance.new("TextLabel")
+LogoText.Name = "LogoText"
+LogoText.Parent = LogoContainer
+LogoText.BackgroundTransparency = 1
+LogoText.Size = UDim2.new(1, 0, 0, 40)
+LogoText.Font = Enum.Font.GothamBold
+LogoText.Text = "ANOS"
+LogoText.TextColor3 = Color3.fromRGB(0, 255, 255)
+LogoText.TextSize = 32
+LogoText.TextStrokeTransparency = 0.5
+
+local LogoSubText = Instance.new("TextLabel")
+LogoSubText.Name = "LogoSubText"
+LogoSubText.Parent = LogoContainer
+LogoSubText.BackgroundTransparency = 1
+LogoSubText.Position = UDim2.new(0, 0, 0, 40)
+LogoSubText.Size = UDim2.new(1, 0, 0, 30)
+LogoSubText.Font = Enum.Font.Gotham
+LogoSubText.Text = "PREMIUM HUB"
+LogoSubText.TextColor3 = Color3.fromRGB(150, 150, 150)
+LogoSubText.TextSize = 14
+
+local Divider1 = Instance.new("Frame")
+Divider1.Name = "Divider"
+Divider1.Parent = LeftPanel
+Divider1.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+Divider1.BackgroundTransparency = 0.7
+Divider1.BorderSizePixel = 0
+Divider1.Position = UDim2.new(0.1, 0, 0, 110)
+Divider1.Size = UDim2.new(0.8, 0, 0, 2)
+
+local CategoryTitle = Instance.new("TextLabel")
+CategoryTitle.Name = "CategoryTitle"
+CategoryTitle.Parent = LeftPanel
+CategoryTitle.BackgroundTransparency = 1
+CategoryTitle.Position = UDim2.new(0, 20, 0, 130)
+CategoryTitle.Size = UDim2.new(1, -40, 0, 25)
+CategoryTitle.Font = Enum.Font.GothamSemibold
+CategoryTitle.Text = "CATEGORIES"
+CategoryTitle.TextColor3 = Color3.fromRGB(200, 200, 200)
+CategoryTitle.TextSize = 12
+CategoryTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+local CategoryList = Instance.new("ScrollingFrame")
+CategoryList.Name = "CategoryList"
+CategoryList.Parent = LeftPanel
+CategoryList.BackgroundTransparency = 1
+CategoryList.BorderSizePixel = 0
+CategoryList.Position = UDim2.new(0, 10, 0, 160)
+CategoryList.Size = UDim2.new(1, -20, 1, -230)
+CategoryList.CanvasSize = UDim2.new(0, 0, 0, 0)
+CategoryList.ScrollBarThickness = 4
+CategoryList.ScrollBarImageColor3 = Color3.fromRGB(0, 255, 255)
+
+local CategoryLayout = Instance.new("UIListLayout")
+CategoryLayout.Parent = CategoryList
+CategoryLayout.Padding = UDim.new(0, 5)
+CategoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+local categories = {
+    {name = "All", icon = "📋", count = 44},
+    {name = "Movement", icon = "🏃", count = 12},
+    {name = "Character", icon = "👤", count = 7},
+    {name = "Animation", icon = "🎬", count = 5},
+    {name = "Combat", icon = "⚔️", count = 5},
+    {name = "Social", icon = "💭", count = 3},
+    {name = "Trolling", icon = "😈", count = 6},
+    {name = "Utility", icon = "🔧", count = 2},
+    {name = "Visual", icon = "👁️", count = 3},
+    {name = "Automation", icon = "🤖", count = 3}
+}
+
+local selectedCategory = "All"
+
+local function createCategoryButton(category, icon, count, index)
+    local btn = Instance.new("TextButton")
+    btn.Name = category
+    btn.Parent = CategoryList
+    btn.BackgroundColor3 = category == "All" and Color3.fromRGB(0, 255, 255) or Color3.fromRGB(20, 20, 30)
+    btn.BackgroundTransparency = category == "All" and 0.7 or 0.9
+    btn.BorderSizePixel = 0
+    btn.Size = UDim2.new(1, 0, 0, 45)
+    btn.Font = Enum.Font.GothamSemibold
+    btn.Text = ""
+    btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    btn.TextSize = 14
+    btn.LayoutOrder = index
+    
+    local btnCorner = Instance.new("UICorner")
+    btnCorner.CornerRadius = UDim.new(0, 10)
+    btnCorner.Parent = btn
+    
+    local iconLabel = Instance.new("TextLabel")
+    iconLabel.Parent = btn
+    iconLabel.BackgroundTransparency = 1
+    iconLabel.Position = UDim2.new(0, 15, 0, 0)
+    iconLabel.Size = UDim2.new(0, 30, 1, 0)
+    iconLabel.Font = Enum.Font.GothamBold
+    iconLabel.Text = icon
+    iconLabel.TextColor3 = category == "All" and Color3.fromRGB(0, 255, 255) or Color3.fromRGB(150, 150, 150)
+    iconLabel.TextSize = 18
+    
+    local nameLabel = Instance.new("TextLabel")
+    nameLabel.Parent = btn
+    nameLabel.BackgroundTransparency = 1
+    nameLabel.Position = UDim2.new(0, 50, 0, 0)
+    nameLabel.Size = UDim2.new(1, -90, 1, 0)
+    nameLabel.Font = Enum.Font.GothamSemibold
+    nameLabel.Text = category
+    nameLabel.TextColor3 = category == "All" and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(200, 200, 200)
+    nameLabel.TextSize = 13
+    nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local countLabel = Instance.new("TextLabel")
+    countLabel.Parent = btn
+    countLabel.BackgroundColor3 = category == "All" and Color3.fromRGB(0, 255, 255) or Color3.fromRGB(40, 40, 50)
+    countLabel.BorderSizePixel = 0
+    countLabel.Position = UDim2.new(1, -35, 0.5, -10)
+    countLabel.Size = UDim2.new(0, 25, 0, 20)
+    countLabel.Font = Enum.Font.GothamBold
+    countLabel.Text = tostring(count)
+    countLabel.TextColor3 = category == "All" and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(150, 150, 150)
+    countLabel.TextSize = 11
+    
+    local countCorner = Instance.new("UICorner")
+    countCorner.CornerRadius = UDim.new(0, 5)
+    countCorner.Parent = countLabel
+    
+    btn.MouseEnter:Connect(function()
+        if selectedCategory ~= category then
+            TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.7}):Play()
+            TweenService:Create(iconLabel, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(0, 255, 255)}):Play()
+        end
+    end)
+    
+    btn.MouseLeave:Connect(function()
+        if selectedCategory ~= category then
+            TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundTransparency = 0.9}):Play()
+            TweenService:Create(iconLabel, TweenInfo.new(0.2), {TextColor3 = Color3.fromRGB(150, 150, 150)}):Play()
+        end
+    end)
+    
+    btn.MouseButton1Click:Connect(function()
+        selectedCategory = category
+        
+        for _, button in pairs(CategoryList:GetChildren()) do
+            if button:IsA("TextButton") then
+                local bIcon = button:FindFirstChild("TextLabel")
+                local bName = button:FindFirstChildOfClass("TextLabel")
+                
+                TweenService:Create(button, TweenInfo.new(0.3), {
+                    BackgroundTransparency = 0.9,
+                    BackgroundColor3 = Color3.fromRGB(20, 20, 30)
+                }):Play()
+                
+                if bIcon then
+                    TweenService:Create(bIcon, TweenInfo.new(0.3), {TextColor3 = Color3.fromRGB(150, 150, 150)}):Play()
+                end
+            end
+        end
+        
+        TweenService:Create(btn, TweenInfo.new(0.3), {
+            BackgroundTransparency = 0.7,
+            BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+        }):Play()
+        TweenService:Create(iconLabel, TweenInfo.new(0.3), {TextColor3 = Color3.fromRGB(0, 255, 255)}):Play()
+        TweenService:Create(nameLabel, TweenInfo.new(0.3), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+        TweenService:Create(countLabel, TweenInfo.new(0.3), {
+            BackgroundColor3 = Color3.fromRGB(0, 255, 255),
+            TextColor3 = Color3.fromRGB(0, 0, 0)
+        }):Play()
+        
+        updateModuleList()
+    end)
+    
+    return btn
+end
+
+for i, cat in ipairs(categories) do
+    createCategoryButton(cat.name, cat.icon, cat.count, i)
+end
+
+CategoryList.CanvasSize = UDim2.new(0, 0, 0, CategoryLayout.AbsoluteContentSize.Y + 10)
+
+local BottomInfo = Instance.new("Frame")
+BottomInfo.Name = "BottomInfo"
+BottomInfo.Parent = LeftPanel
+BottomInfo.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+BottomInfo.BackgroundTransparency = 0.9
+BottomInfo.BorderSizePixel = 0
+BottomInfo.Position = UDim2.new(0, 10, 1, -60)
+BottomInfo.Size = UDim2.new(1, -20, 0, 50)
+
+local BottomCorner = Instance.new("UICorner")
+BottomCorner.CornerRadius = UDim.new(0, 10)
+BottomCorner.Parent = BottomInfo
+
+local VersionLabel = Instance.new("TextLabel")
+VersionLabel.Parent = BottomInfo
+VersionLabel.BackgroundTransparency = 1
+VersionLabel.Size = UDim2.new(1, 0, 0.5, 0)
+VersionLabel.Font = Enum.Font.GothamBold
+VersionLabel.Text = "Version 2.0"
+VersionLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
+VersionLabel.TextSize = 12
+
+local StatusLabel = Instance.new("TextLabel")
+StatusLabel.Parent = BottomInfo
+StatusLabel.BackgroundTransparency = 1
+StatusLabel.Position = UDim2.new(0, 0, 0.5, 0)
+StatusLabel.Size = UDim2.new(1, 0, 0.5, 0)
+StatusLabel.Font = Enum.Font.Gotham
+StatusLabel.Text = "44 Modules Loaded"
+StatusLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
+StatusLabel.TextSize = 10
+
+local RightPanel = Instance.new("Frame")
+RightPanel.Name = "RightPanel"
+RightPanel.Parent = MainContainer
+RightPanel.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+RightPanel.BackgroundTransparency = 0.1
+RightPanel.BorderSizePixel = 0
+RightPanel.Position = UDim2.new(0, 260, 0, 0)
+RightPanel.Size = UDim2.new(0, 640, 1, 0)
+
+local RightCorner = Instance.new("UICorner")
+RightCorner.CornerRadius = UDim.new(0, 20)
+RightCorner.Parent = RightPanel
+
+local RightGradient = Instance.new("UIGradient")
+RightGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(15, 15, 20)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(20, 20, 30))
+}
+RightGradient.Rotation = -45
+RightGradient.Parent = RightPanel
+
+local RightStroke = Instance.new("UIStroke")
+RightStroke.Color = Color3.fromRGB(138, 43, 226)
+RightStroke.Thickness = 2
+RightStroke.Transparency = 0.5
+RightStroke.Parent = RightPanel
 
 local TopBar = Instance.new("Frame")
 TopBar.Name = "TopBar"
-TopBar.Parent = MainFrame
+TopBar.Parent = RightPanel
 TopBar.BackgroundTransparency = 1
-TopBar.Size = UDim2.new(1, 0, 0, 50)
-
-local Logo = Instance.new("TextLabel")
-Logo.Name = "Logo"
-Logo.Parent = TopBar
-Logo.BackgroundTransparency = 1
-Logo.Position = UDim2.new(0, 15, 0, 0)
-Logo.Size = UDim2.new(0, 200, 1, 0)
-Logo.Font = Enum.Font.GothamBold
-Logo.Text = "⚡ ANOS"
-Logo.TextColor3 = Color3.fromRGB(138, 43, 226)
-Logo.TextSize = 20
-Logo.TextXAlignment = Enum.TextXAlignment.Left
-
-local SubTitle = Instance.new("TextLabel")
-SubTitle.Name = "SubTitle"
-SubTitle.Parent = TopBar
-SubTitle.BackgroundTransparency = 1
-SubTitle.Position = UDim2.new(0, 85, 0, 0)
-SubTitle.Size = UDim2.new(0, 100, 1, 0)
-SubTitle.Font = Enum.Font.Gotham
-SubTitle.Text = "HUB"
-SubTitle.TextColor3 = Color3.fromRGB(200, 200, 200)
-SubTitle.TextSize = 18
-SubTitle.TextXAlignment = Enum.TextXAlignment.Left
-
-local ButtonContainer = Instance.new("Frame")
-ButtonContainer.Name = "ButtonContainer"
-ButtonContainer.Parent = TopBar
-ButtonContainer.BackgroundTransparency = 1
-ButtonContainer.Position = UDim2.new(1, -90, 0, 10)
-ButtonContainer.Size = UDim2.new(0, 80, 0, 30)
-
-local MinimizeBtn = Instance.new("TextButton")
-MinimizeBtn.Name = "MinimizeBtn"
-MinimizeBtn.Parent = ButtonContainer
-MinimizeBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-MinimizeBtn.BorderSizePixel = 0
-MinimizeBtn.Position = UDim2.new(0, 0, 0, 0)
-MinimizeBtn.Size = UDim2.new(0, 35, 0, 30)
-MinimizeBtn.Font = Enum.Font.GothamBold
-MinimizeBtn.Text = "−"
-MinimizeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-MinimizeBtn.TextSize = 18
-
-local MinimizeCorner = Instance.new("UICorner")
-MinimizeCorner.CornerRadius = UDim.new(0, 8)
-MinimizeCorner.Parent = MinimizeBtn
-
-local CloseBtn = Instance.new("TextButton")
-CloseBtn.Name = "CloseBtn"
-CloseBtn.Parent = ButtonContainer
-CloseBtn.BackgroundColor3 = Color3.fromRGB(220, 38, 38)
-CloseBtn.BorderSizePixel = 0
-CloseBtn.Position = UDim2.new(0, 45, 0, 0)
-CloseBtn.Size = UDim2.new(0, 35, 0, 30)
-CloseBtn.Font = Enum.Font.GothamBold
-CloseBtn.Text = "×"
-CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseBtn.TextSize = 20
-
-local CloseCorner = Instance.new("UICorner")
-CloseCorner.CornerRadius = UDim.new(0, 8)
-CloseCorner.Parent = CloseBtn
+TopBar.Size = UDim2.new(1, 0, 0, 60)
 
 local SearchContainer = Instance.new("Frame")
 SearchContainer.Name = "SearchContainer"
-SearchContainer.Parent = MainFrame
-SearchContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+SearchContainer.Parent = TopBar
+SearchContainer.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
 SearchContainer.BorderSizePixel = 0
-SearchContainer.Position = UDim2.new(0, 15, 0, 60)
-SearchContainer.Size = UDim2.new(1, -30, 0, 38)
+SearchContainer.Position = UDim2.new(0, 20, 0, 15)
+SearchContainer.Size = UDim2.new(1, -120, 0, 40)
 
 local SearchCorner = Instance.new("UICorner")
-SearchCorner.CornerRadius = UDim.new(0, 10)
+SearchCorner.CornerRadius = UDim.new(0, 12)
 SearchCorner.Parent = SearchContainer
 
-local SearchIcon = Instance.new("TextLabel")
+local SearchStroke = Instance.new("UIStroke")
+SearchStroke.Color = Color3.fromRGB(138, 43, 226)
+SearchStroke.Thickness = 1
+SearchStroke.Transparency = 0.7
+SearchStroke.Parent = SearchContainer
+
+local SearchIcon = Instance.new("ImageLabel")
 SearchIcon.Name = "SearchIcon"
 SearchIcon.Parent = SearchContainer
 SearchIcon.BackgroundTransparency = 1
-SearchIcon.Position = UDim2.new(0, 12, 0, 0)
-SearchIcon.Size = UDim2.new(0, 30, 1, 0)
-SearchIcon.Font = Enum.Font.GothamBold
-SearchIcon.Text = "🔍"
-SearchIcon.TextColor3 = Color3.fromRGB(138, 43, 226)
-SearchIcon.TextSize = 16
+SearchIcon.Position = UDim2.new(0, 12, 0.5, -10)
+SearchIcon.Size = UDim2.new(0, 20, 0, 20)
+SearchIcon.Image = "rbxassetid://3926305904"
+SearchIcon.ImageColor3 = Color3.fromRGB(138, 43, 226)
+SearchIcon.ImageRectOffset = Vector2.new(964, 324)
+SearchIcon.ImageRectSize = Vector2.new(36, 36)
 
 local SearchBox = Instance.new("TextBox")
 SearchBox.Name = "SearchBox"
@@ -190,202 +394,173 @@ SearchBox.BackgroundTransparency = 1
 SearchBox.Position = UDim2.new(0, 40, 0, 0)
 SearchBox.Size = UDim2.new(1, -50, 1, 0)
 SearchBox.Font = Enum.Font.Gotham
-SearchBox.PlaceholderText = "Cari module..."
+SearchBox.PlaceholderText = "Search modules..."
 SearchBox.Text = ""
 SearchBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 SearchBox.TextSize = 14
 SearchBox.TextXAlignment = Enum.TextXAlignment.Left
 
-local CategoryScroll = Instance.new("ScrollingFrame")
-CategoryScroll.Name = "CategoryScroll"
-CategoryScroll.Parent = MainFrame
-CategoryScroll.BackgroundTransparency = 1
-CategoryScroll.BorderSizePixel = 0
-CategoryScroll.Position = UDim2.new(0, 15, 0, 108)
-CategoryScroll.Size = UDim2.new(1, -30, 0, 42)
-CategoryScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
-CategoryScroll.ScrollBarThickness = 0
-CategoryScroll.ScrollingDirection = Enum.ScrollingDirection.X
+local CloseBtn = Instance.new("TextButton")
+CloseBtn.Name = "CloseBtn"
+CloseBtn.Parent = TopBar
+CloseBtn.BackgroundColor3 = Color3.fromRGB(255, 50, 80)
+CloseBtn.BorderSizePixel = 0
+CloseBtn.Position = UDim2.new(1, -80, 0, 15)
+CloseBtn.Size = UDim2.new(0, 70, 0, 40)
+CloseBtn.Font = Enum.Font.GothamBold
+CloseBtn.Text = "✕"
+CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseBtn.TextSize = 20
 
-local CategoryLayout = Instance.new("UIListLayout")
-CategoryLayout.Parent = CategoryScroll
-CategoryLayout.FillDirection = Enum.FillDirection.Horizontal
-CategoryLayout.Padding = UDim.new(0, 8)
-CategoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
-local categories = {
-    {name = "All", icon = "📋"},
-    {name = "Movement", icon = "🏃"},
-    {name = "Character", icon = "👤"},
-    {name = "Animation", icon = "🎬"},
-    {name = "Combat", icon = "⚔️"},
-    {name = "Social", icon = "💭"},
-    {name = "Trolling", icon = "😈"},
-    {name = "Utility", icon = "🔧"},
-    {name = "Visual", icon = "👁️"},
-    {name = "Automation", icon = "🤖"}
-}
-
-local selectedCategory = "All"
-
-for i, category in ipairs(categories) do
-    local catBtn = Instance.new("TextButton")
-    catBtn.Name = category.name
-    catBtn.Parent = CategoryScroll
-    catBtn.BackgroundColor3 = category.name == "All" and Color3.fromRGB(138, 43, 226) or Color3.fromRGB(30, 30, 35)
-    catBtn.BorderSizePixel = 0
-    catBtn.Size = UDim2.new(0, 100, 0, 36)
-    catBtn.Font = Enum.Font.GothamSemibold
-    catBtn.Text = category.icon .. " " .. category.name
-    catBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    catBtn.TextSize = 12
-    catBtn.LayoutOrder = i
-    
-    local catCorner = Instance.new("UICorner")
-    catCorner.CornerRadius = UDim.new(0, 10)
-    catCorner.Parent = catBtn
-    
-    catBtn.MouseEnter:Connect(function()
-        if selectedCategory ~= category.name then
-            TweenService:Create(catBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(40, 40, 45)}):Play()
-        end
-    end)
-    
-    catBtn.MouseLeave:Connect(function()
-        if selectedCategory ~= category.name then
-            TweenService:Create(catBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 35)}):Play()
-        end
-    end)
-    
-    catBtn.MouseButton1Click:Connect(function()
-        selectedCategory = category.name
-        for _, btn in pairs(CategoryScroll:GetChildren()) do
-            if btn:IsA("TextButton") then
-                TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 35)}):Play()
-            end
-        end
-        TweenService:Create(catBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(138, 43, 226)}):Play()
-        updateModuleList()
-    end)
-end
-
-CategoryScroll.CanvasSize = UDim2.new(0, CategoryLayout.AbsoluteContentSize.X, 0, 0)
-CategoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-    CategoryScroll.CanvasSize = UDim2.new(0, CategoryLayout.AbsoluteContentSize.X, 0, 0)
-end)
+local CloseCorner = Instance.new("UICorner")
+CloseCorner.CornerRadius = UDim.new(0, 12)
+CloseCorner.Parent = CloseBtn
 
 local ModuleScroll = Instance.new("ScrollingFrame")
 ModuleScroll.Name = "ModuleScroll"
-ModuleScroll.Parent = MainFrame
+ModuleScroll.Parent = RightPanel
 ModuleScroll.BackgroundTransparency = 1
 ModuleScroll.BorderSizePixel = 0
-ModuleScroll.Position = UDim2.new(0, 15, 0, 160)
-ModuleScroll.Size = UDim2.new(1, -30, 1, -175)
+ModuleScroll.Position = UDim2.new(0, 20, 0, 75)
+ModuleScroll.Size = UDim2.new(1, -40, 1, -95)
 ModuleScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
-ModuleScroll.ScrollBarThickness = 4
+ModuleScroll.ScrollBarThickness = 6
 ModuleScroll.ScrollBarImageColor3 = Color3.fromRGB(138, 43, 226)
 
-local ModuleLayout = Instance.new("UIListLayout")
-ModuleLayout.Parent = ModuleScroll
-ModuleLayout.Padding = UDim.new(0, 8)
-ModuleLayout.SortOrder = Enum.SortOrder.LayoutOrder
+local ModuleGrid = Instance.new("UIGridLayout")
+ModuleGrid.Parent = ModuleScroll
+ModuleGrid.CellPadding = UDim2.new(0, 12, 0, 12)
+ModuleGrid.CellSize = UDim2.new(0, 190, 0, 110)
+ModuleGrid.SortOrder = Enum.SortOrder.LayoutOrder
 
-local function createModuleCard(moduleName, fileName, icon, index)
+local function createModuleCard(module, index)
     local card = Instance.new("Frame")
-    card.Name = fileName .. "_Card"
+    card.Name = module.file .. "_Card"
     card.Parent = ModuleScroll
-    card.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+    card.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
     card.BorderSizePixel = 0
-    card.Size = UDim2.new(1, -8, 0, 60)
     card.LayoutOrder = index
     
     local cardCorner = Instance.new("UICorner")
-    cardCorner.CornerRadius = UDim.new(0, 12)
+    cardCorner.CornerRadius = UDim.new(0, 15)
     cardCorner.Parent = card
+    
+    local cardStroke = Instance.new("UIStroke")
+    cardStroke.Color = module.color
+    cardStroke.Thickness = 2
+    cardStroke.Transparency = 0.7
+    cardStroke.Parent = card
+    
+    local glowLine = Instance.new("Frame")
+    glowLine.Name = "GlowLine"
+    glowLine.Parent = card
+    glowLine.BackgroundColor3 = module.color
+    glowLine.BorderSizePixel = 0
+    glowLine.Size = UDim2.new(1, 0, 0, 3)
+    glowLine.Transparency = 0.5
+    
+    local glowCorner = Instance.new("UICorner")
+    glowCorner.CornerRadius = UDim.new(0, 15)
+    glowCorner.Parent = glowLine
+    
+    local iconBg = Instance.new("Frame")
+    iconBg.Name = "IconBg"
+    iconBg.Parent = card
+    iconBg.BackgroundColor3 = module.color
+    iconBg.BackgroundTransparency = 0.9
+    iconBg.BorderSizePixel = 0
+    iconBg.Position = UDim2.new(0, 15, 0, 15)
+    iconBg.Size = UDim2.new(0, 45, 0, 45)
+    
+    local iconBgCorner = Instance.new("UICorner")
+    iconBgCorner.CornerRadius = UDim.new(0, 10)
+    iconBgCorner.Parent = iconBg
     
     local iconLabel = Instance.new("TextLabel")
     iconLabel.Name = "Icon"
-    iconLabel.Parent = card
+    iconLabel.Parent = iconBg
     iconLabel.BackgroundTransparency = 1
-    iconLabel.Position = UDim2.new(0, 15, 0, 0)
-    iconLabel.Size = UDim2.new(0, 40, 1, 0)
+    iconLabel.Size = UDim2.new(1, 0, 1, 0)
     iconLabel.Font = Enum.Font.GothamBold
-    iconLabel.Text = icon
-    iconLabel.TextColor3 = Color3.fromRGB(138, 43, 226)
+    iconLabel.Text = module.icon
+    iconLabel.TextColor3 = module.color
     iconLabel.TextSize = 24
     
     local nameLabel = Instance.new("TextLabel")
     nameLabel.Name = "Name"
     nameLabel.Parent = card
     nameLabel.BackgroundTransparency = 1
-    nameLabel.Position = UDim2.new(0, 60, 0, 10)
-    nameLabel.Size = UDim2.new(1, -140, 0, 20)
-    nameLabel.Font = Enum.Font.GothamSemibold
-    nameLabel.Text = moduleName
+    nameLabel.Position = UDim2.new(0, 70, 0, 15)
+    nameLabel.Size = UDim2.new(1, -80, 0, 20)
+    nameLabel.Font = Enum.Font.GothamBold
+    nameLabel.Text = module.name
     nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    nameLabel.TextSize = 14
+    nameLabel.TextSize = 13
     nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+    nameLabel.TextTruncate = Enum.TextTruncate.AtEnd
     
-    local statusLabel = Instance.new("TextLabel")
-    statusLabel.Name = "Status"
-    statusLabel.Parent = card
-    statusLabel.BackgroundTransparency = 1
-    statusLabel.Position = UDim2.new(0, 60, 0, 32)
-    statusLabel.Size = UDim2.new(1, -140, 0, 16)
-    statusLabel.Font = Enum.Font.Gotham
-    statusLabel.Text = "Inactive"
-    statusLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-    statusLabel.TextSize = 11
-    statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+    local categoryLabel = Instance.new("TextLabel")
+    categoryLabel.Name = "Category"
+    categoryLabel.Parent = card
+    categoryLabel.BackgroundTransparency = 1
+    categoryLabel.Position = UDim2.new(0, 70, 0, 35)
+    categoryLabel.Size = UDim2.new(1, -80, 0, 15)
+    categoryLabel.Font = Enum.Font.Gotham
+    categoryLabel.Text = module.category
+    categoryLabel.TextColor3 = Color3.fromRGB(120, 120, 120)
+    categoryLabel.TextSize = 10
+    categoryLabel.TextXAlignment = Enum.TextXAlignment.Left
     
     local toggleBtn = Instance.new("TextButton")
     toggleBtn.Name = "Toggle"
     toggleBtn.Parent = card
-    toggleBtn.BackgroundColor3 = Color3.fromRGB(220, 38, 38)
+    toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
     toggleBtn.BorderSizePixel = 0
-    toggleBtn.Position = UDim2.new(1, -65, 0.5, -15)
-    toggleBtn.Size = UDim2.new(0, 50, 0, 30)
+    toggleBtn.Position = UDim2.new(0, 15, 1, -35)
+    toggleBtn.Size = UDim2.new(1, -30, 0, 28)
     toggleBtn.Font = Enum.Font.GothamBold
-    toggleBtn.Text = "OFF"
-    toggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggleBtn.Text = "ACTIVATE"
+    toggleBtn.TextColor3 = Color3.fromRGB(200, 200, 200)
     toggleBtn.TextSize = 11
     
     local toggleCorner = Instance.new("UICorner")
     toggleCorner.CornerRadius = UDim.new(0, 8)
     toggleCorner.Parent = toggleBtn
     
-    local highlight = Instance.new("Frame")
-    highlight.Name = "Highlight"
-    highlight.Parent = card
-    highlight.BackgroundColor3 = Color3.fromRGB(138, 43, 226)
-    highlight.BorderSizePixel = 0
-    highlight.Size = UDim2.new(0, 3, 1, 0)
-    highlight.Visible = false
+    local statusDot = Instance.new("Frame")
+    statusDot.Name = "StatusDot"
+    statusDot.Parent = card
+    statusDot.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    statusDot.BorderSizePixel = 0
+    statusDot.Position = UDim2.new(1, -25, 0, 25)
+    statusDot.Size = UDim2.new(0, 8, 0, 8)
     
-    local highlightCorner = Instance.new("UICorner")
-    highlightCorner.CornerRadius = UDim.new(1, 0)
-    highlightCorner.Parent = highlight
+    local dotCorner = Instance.new("UICorner")
+    dotCorner.CornerRadius = UDim.new(1, 0)
+    dotCorner.Parent = statusDot
     
     card.MouseEnter:Connect(function()
-        TweenService:Create(card, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(40, 40, 45)}):Play()
+        TweenService:Create(card, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 40)}):Play()
+        TweenService:Create(cardStroke, TweenInfo.new(0.2), {Transparency = 0.3}):Play()
     end)
     
     card.MouseLeave:Connect(function()
-        TweenService:Create(card, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 35)}):Play()
+        TweenService:Create(card, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(25, 25, 35)}):Play()
+        TweenService:Create(cardStroke, TweenInfo.new(0.2), {Transparency = 0.7}):Play()
     end)
     
     toggleBtn.MouseButton1Click:Connect(function()
-        if ModuleStates[fileName] then
-            stopModule(fileName, toggleBtn, statusLabel, highlight)
+        if ModuleStates[module.file] then
+            stopModule(module.file, toggleBtn, statusDot, cardStroke)
         else
-            loadModule(fileName, toggleBtn, statusLabel, highlight, moduleName)
+            loadModule(module.file, toggleBtn, statusDot, cardStroke, module.name, module.color)
         end
     end)
     
     return card
 end
 
-function loadModule(fileName, button, statusLabel, highlight, moduleName)
+function loadModule(fileName, button, statusDot, stroke, moduleName, color)
     local success, result = pcall(function()
         local url = GitHubBase .. fileName
         local scriptContent = game:HttpGet(url)
@@ -399,14 +574,16 @@ function loadModule(fileName, button, statusLabel, highlight, moduleName)
                 ModuleConnections[fileName] = moduleReturn
                 moduleReturn.start()
                 
-                button.Text = "ON"
-                TweenService:Create(button, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(34, 197, 94)}):Play()
-                statusLabel.Text = "Active"
-                statusLabel.TextColor3 = Color3.fromRGB(34, 197, 94)
-                highlight.Visible = true
+                button.Text = "DEACTIVATE"
+                TweenService:Create(button, TweenInfo.new(0.3), {
+                    BackgroundColor3 = color,
+                    TextColor3 = Color3.fromRGB(255, 255, 255)
+                }):Play()
+                TweenService:Create(statusDot, TweenInfo.new(0.3), {BackgroundColor3 = color}):Play()
+                TweenService:Create(stroke, TweenInfo.new(0.3), {Transparency = 0}):Play()
                 
                 game:GetService("StarterGui"):SetCore("SendNotification", {
-                    Title = "✅ Module Aktif";
+                    Title = "✅ Module Active";
                     Text = moduleName;
                     Duration = 2;
                 })
@@ -415,13 +592,13 @@ function loadModule(fileName, button, statusLabel, highlight, moduleName)
     end)
     
     if not success then
-        warn("Gagal load: " .. fileName)
-        button.Text = "ERR"
-        TweenService:Create(button, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(127, 29, 29)}):Play()
+        warn("Failed: " .. fileName)
+        button.Text = "ERROR"
+        TweenService:Create(button, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(150, 0, 0)}):Play()
     end
 end
 
-function stopModule(fileName, button, statusLabel, highlight)
+function stopModule(fileName, button, statusDot, stroke)
     pcall(function()
         if ModuleConnections[fileName] and ModuleConnections[fileName].stop then
             ModuleConnections[fileName].stop()
@@ -431,11 +608,13 @@ function stopModule(fileName, button, statusLabel, highlight)
     ModuleStates[fileName] = false
     ModuleConnections[fileName] = nil
     
-    button.Text = "OFF"
-    TweenService:Create(button, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(220, 38, 38)}):Play()
-    statusLabel.Text = "Inactive"
-    statusLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-    highlight.Visible = false
+    button.Text = "ACTIVATE"
+    TweenService:Create(button, TweenInfo.new(0.3), {
+        BackgroundColor3 = Color3.fromRGB(40, 40, 50),
+        TextColor3 = Color3.fromRGB(200, 200, 200)
+    }):Play()
+    TweenService:Create(statusDot, TweenInfo.new(0.3), {BackgroundColor3 = Color3.fromRGB(100, 100, 100)}):Play()
+    TweenService:Create(stroke, TweenInfo.new(0.3), {Transparency = 0.7}):Play()
 end
 
 function updateModuleList()
@@ -453,26 +632,22 @@ function updateModuleList()
         local matchesSearch = searchText == "" or module.name:lower():find(searchText)
         
         if matchesCategory and matchesSearch then
-            createModuleCard(module.name, module.file, module.icon, index)
+            createModuleCard(module, index)
             index = index + 1
         end
     end
     
-    ModuleScroll.CanvasSize = UDim2.new(0, 0, 0, ModuleLayout.AbsoluteContentSize.Y + 8)
+    ModuleScroll.CanvasSize = UDim2.new(0, 0, 0, math.ceil((index - 1) / 3) * 122 + 10)
 end
 
 SearchBox:GetPropertyChangedSignal("Text"):Connect(updateModuleList)
 
-ModuleLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-    ModuleScroll.CanvasSize = UDim2.new(0, 0, 0, ModuleLayout.AbsoluteContentSize.Y + 8)
-end)
-
 CloseBtn.MouseEnter:Connect(function()
-    TweenService:Create(CloseBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(239, 68, 68)}):Play()
+    TweenService:Create(CloseBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(255, 70, 100)}):Play()
 end)
 
 CloseBtn.MouseLeave:Connect(function()
-    TweenService:Create(CloseBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(220, 38, 38)}):Play()
+    TweenService:Create(CloseBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(255, 50, 80)}):Play()
 end)
 
 CloseBtn.MouseButton1Click:Connect(function()
@@ -484,44 +659,12 @@ CloseBtn.MouseButton1Click:Connect(function()
         end)
     end
     
-    TweenService:Create(MainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
-        Size = UDim2.new(0, 0, 0, 0),
-        Position = UDim2.new(1, 0, 0, 250)
+    TweenService:Create(BlurEffect, TweenInfo.new(0.5), {Size = 0}):Play()
+    TweenService:Create(MainContainer, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+        Size = UDim2.new(0, 0, 0, 0)
     }):Play()
-    task.wait(0.4)
+    task.wait(0.5)
     HubGui:Destroy()
-end)
-
-MinimizeBtn.MouseEnter:Connect(function()
-    TweenService:Create(MinimizeBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(40, 40, 45)}):Play()
-end)
-
-MinimizeBtn.MouseLeave:Connect(function()
-    TweenService:Create(MinimizeBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30, 30, 35)}):Play()
-end)
-
-local minimized = false
-MinimizeBtn.MouseButton1Click:Connect(function()
-    if minimized then
-        TweenService:Create(MainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
-            Size = UDim2.new(0, 350, 0, 500)
-        }):Play()
-        task.wait(0.2)
-        SearchContainer.Visible = true
-        CategoryScroll.Visible = true
-        ModuleScroll.Visible = true
-        MinimizeBtn.Text = "−"
-        minimized = false
-    else
-        SearchContainer.Visible = false
-        CategoryScroll.Visible = false
-        ModuleScroll.Visible = false
-        TweenService:Create(MainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
-            Size = UDim2.new(0, 350, 0, 50)
-        }):Play()
-        MinimizeBtn.Text = "+"
-        minimized = true
-    end
 end)
 
 local dragToggle = nil
@@ -531,14 +674,14 @@ local startPos = nil
 local function updateInput(input)
     local delta = input.Position - dragStart
     local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    TweenService:Create(MainFrame, TweenInfo.new(0.15), {Position = position}):Play()
+    TweenService:Create(MainContainer, TweenInfo.new(0.1), {Position = position}):Play()
 end
 
 TopBar.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         dragToggle = true
         dragStart = input.Position
-        startPos = MainFrame.Position
+        startPos = MainContainer.Position
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 dragToggle = false
@@ -555,34 +698,41 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
-MainFrame.Size = UDim2.new(0, 0, 0, 0)
-MainFrame.Position = UDim2.new(1, 0, 0, 250)
+MainContainer.Size = UDim2.new(0, 0, 0, 0)
 
 task.spawn(function()
-    while task.wait(0.05) do
-        local hue = tick() % 5 / 5
-        local color = Color3.fromHSV(hue, 0.6, 0.9)
-        TweenService:Create(GlowEffect, TweenInfo.new(0.5), {ImageColor3 = color}):Play()
+    TweenService:Create(BlurEffect, TweenInfo.new(0.8), {Size = 10}):Play()
+    TweenService:Create(MainContainer, TweenInfo.new(0.8, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 900, 0, 550)
+    }):Play()
+end)
+
+task.spawn(function()
+    while task.wait(0.03) do
+        pcall(function()
+            local hue = tick() % 5 / 5
+            local color1 = Color3.fromHSV(hue, 0.8, 1)
+            local color2 = Color3.fromHSV((hue + 0.5) % 1, 0.8, 1)
+            
+            TweenService:Create(LeftStroke, TweenInfo.new(0.5), {Color = color1}):Play()
+            TweenService:Create(RightStroke, TweenInfo.new(0.5), {Color = color2}):Play()
+            TweenService:Create(LogoText, TweenInfo.new(0.5), {TextColor3 = color1}):Play()
+        end)
     end
 end)
 
-TweenService:Create(MainFrame, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-    Size = UDim2.new(0, 350, 0, 500),
-    Position = UDim2.new(1, -370, 0, 20)
-}):Play()
-
-task.wait(0.3)
+task.wait(0.5)
 updateModuleList()
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "⚡ ANOS HUB";
-    Text = "Modern UI loaded! " .. #Modules .. " modules ready";
+    Title = "⚡ ANOS PREMIUM HUB";
+    Text = "Cyberpunk Edition Loaded!";
     Duration = 4;
 })
 
-print("╔════════════════════════════════════════")
-print("║     ⚡ ANOS MODERN SCRIPT HUB ⚡      ")
-print("║  GitHub: anos-rgb/anos-allscript       ")
-print("║  Total Modules: " .. #Modules .. "     ")
-print("║  UI Version: 2.0 Modern Edition        ")
-print("╚════════════════════════════════════════")
+print("╔════════════════════════════════════════╗")
+print("║   ⚡ ANOS PREMIUM HUB - CYBERPUNK ⚡   ║")
+print("║  GitHub: anos-rgb/anos-allscript      ║")
+print("║  Total Modules: 44                    ║")
+print("║  UI Version: 3.0 Premium Edition      ║")
+print("╚════════════════════════════════════════╝")
