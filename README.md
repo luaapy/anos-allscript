@@ -65,7 +65,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 ```
 
 ### Method 2: Manual Install
-1. Download file `loader.lua`
+1. Download file `main.lua`
 2. Copy paste ke executor
 3. Execute script
 
@@ -299,7 +299,7 @@ Script ini dibuat untuk tujuan edukasi dan testing. Developer tidak bertanggung 
 Kalau script ini membantu, berikan ⭐ di GitHub!
 
 Made by anos.py
-
+discord: anos.pys
 ---
 
 <div align="center">
