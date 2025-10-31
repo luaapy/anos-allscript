@@ -24,16 +24,16 @@ function Module.start()
     keybindConnection = UserInputService.InputBegan:Connect(function(input, gameProcessed)
         if gameProcessed then return end
         
-        local aPressed = UserInputService:IsKeyDown(Enum.KeyCode.A)
+        local oPressed = UserInputService:IsKeyDown(Enum.KeyCode.O)
         local nPressed = input.KeyCode == Enum.KeyCode.N
         
-        if aPressed and nPressed then
+        if oPressed and nPressed then
             if isRunning then
                 isRunning = false
                 
                 game:GetService("StarterGui"):SetCore("SendNotification", {
                     Title = "🖱️ Auto Click";
-                    Text = "Paused! Press A+N to resume";
+                    Text = "Paused! Press O+N to resume";
                     Duration = 2;
                 })
             else
@@ -50,7 +50,7 @@ function Module.start()
     
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "🖱️ Auto Click Active";
-        Text = "Press A+N to pause/resume";
+        Text = "Press O+N to pause/resume";
         Duration = 3;
     })
 end
