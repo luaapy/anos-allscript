@@ -3,6 +3,7 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 local Module = {}
 local connection
+local charAddedConnection
 
 local function preventRagdoll()
     pcall(function()
@@ -15,34 +16,54 @@ local function preventRagdoll()
         humanoid.PlatformStand = false
         humanoid.Sit = false
         
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        
         for _, part in pairs(character:GetDescendants()) do
             if part:IsA("BasePart") then
-                part.Anchored = false
-                
-                if part.Name ~= "HumanoidRootPart" then
+                if part ~= humanoidRootPart then
+                    part.Anchored = false
                     part.CanCollide = true
                 end
             end
             
             if part:IsA("BodyVelocity") or part:IsA("BodyAngularVelocity") or
-               part:IsA("BodyPosition") or part:IsA("BodyGyro") then
+               part:IsA("BodyPosition") or part:IsA("BodyGyro") or 
+               part:IsA("BodyThrust") or part:IsA("BodyForce") then
                 part:Destroy()
             end
             
-            if part:IsA("Motor6D") or part:IsA("Weld") or part:IsA("WeldConstraint") then
+            if part:IsA("Motor6D") then
                 if part.Name ~= "Root" and part.Name ~= "RootJoint" then
                     part.Enabled = true
+                end
+            end
+            
+            if part:IsA("Weld") or part:IsA("WeldConstraint") then
+                local name = part.Name:lower()
+                if name:find("ragdoll") or name:find("knockout") then
+                    part:Destroy()
                 end
             end
         end
         
         for _, effect in pairs(character:GetDescendants()) do
-            if effect:IsA("BoolValue") or effect:IsA("StringValue") then
+            if effect:IsA("BoolValue") or effect:IsA("StringValue") or effect:IsA("IntValue") then
                 local name = effect.Name:lower()
-                if name:find("ragdoll") or name:find("stun") or name:find("knocked") then
+                if name:find("ragdoll") or name:find("stun") or name:find("knocked") or 
+                   name:find("ko") or name:find("downed") or name:find("disabled") then
+                    if effect:IsA("BoolValue") then
+                        effect.Value = false
+                    end
+                    task.wait()
                     effect:Destroy()
                 end
             end
+        end
+        
+        local ragdollScript = character:FindFirstChild("RagdollScript", true)
+        if ragdollScript then
+            ragdollScript.Disabled = true
+            ragdollScript:Destroy()
         end
     end)
 end
@@ -52,22 +73,21 @@ function Module.start()
         preventRagdoll()
     end)
     
-    LocalPlayer.CharacterAdded:Connect(function()
+    charAddedConnection = LocalPlayer.CharacterAdded:Connect(function(char)
         task.wait(0.5)
         preventRagdoll()
     end)
-    
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "🚫 Anti Ragdoll";
-        Text = "Ragdoll prevention active!";
-        Duration = 3;
-    })
 end
 
 function Module.stop()
     if connection then
         connection:Disconnect()
         connection = nil
+    end
+    
+    if charAddedConnection then
+        charAddedConnection:Disconnect()
+        charAddedConnection = nil
     end
 end
 
