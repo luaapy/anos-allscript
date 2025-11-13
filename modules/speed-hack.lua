@@ -4,7 +4,7 @@ local LocalPlayer = Players.LocalPlayer
 
 local Module = {}
 local connection
-local speedValue = 5000
+local speedValue = 500
 local originalSpeed = 16
 
 function Module.start()
