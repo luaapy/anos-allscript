@@ -4,7 +4,7 @@ local LocalPlayer = Players.LocalPlayer
 
 local Module = {}
 local connection
-local jumpValue = 100
+local jumpValue = 100000000000000000000000000000000
 local originalJump = 50
 
 function Module.start()
