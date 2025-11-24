@@ -2,12 +2,12 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-2.0-blueviolet)
-![Modules](https://img.shields.io/badge/modules-44-brightgreen)
+![Version](https://img.shields.io/badge/version-3.0-blueviolet)
+![Modules](https://img.shields.io/badge/modules-153-brightgreen)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![Platform](https://img.shields.io/badge/platform-Roblox-red)
 
-**Modern Script Hub untuk Roblox dengan 44+ Module Powerful**
+**Modern Script Hub untuk Roblox dengan 153+ Module Powerful**
 
 [Features](#-features) • [Installation](#-installation) • [Modules](#-modules) • [Usage](#-usage) • [Contributing](#-contributing)
 
@@ -40,7 +40,7 @@
 - **Drag & Drop** - Bisa dipindah kemana saja sesuai keinginan
 
 ### 🚀 Powerful Features
-- ✅ 44 Modules siap pakai
+- ✅ 153 Modules siap pakai
 - ✅ 10 Kategori terorganisir
 - ✅ Search function untuk cari module cepat
 - ✅ Toggle ON/OFF dengan status real-time
@@ -77,7 +77,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 
 ## 📦 Modules List
 
-### 🏃 Movement (12 Modules)
+### 🏃 Movement (24 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | ⚡ | Speed Hack | Kecepatan lari unlimited | ✅ |
@@ -90,9 +90,20 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | ⛸️ | Ice Skate | Meluncur seperti ice skating | ✅ |
 | 🌙 | Moonwalk | Jalan mundur kayak Michael Jackson | ✅ |
 | 🧗 | Climb Boost | Panjat lebih cepat | ✅ |
-| 🚁 | Speed Fly | Fly dengan kecepatan tinggi | ✅ |
+| 🌍 | Gravity Control | Kontrol gravitasi workspace | ✅ |
+| ⬆️ | Super Jump | Lompat super tinggi customizable | ✅ |
+| 🧗 | Wall Climb | Panjat tembok dengan jump | ✅ |
+| ✈️ | No Clip Fly | Kombinasi noclip dan fly | ✅ |
+| 🖱️ | Click Teleport | Ctrl+Click untuk teleport | ✅ |
+| 🕷️ | Spider-Man | Grappling hook ala Spider-Man | ✅ |
+| ☁️ | Float Height | Melayang di atas tanah | ✅ |
+| 🦘 | Auto Jump | Jump otomatis | ✅ |
+| 🌀 | Roll Character | Rolling sideways | ✅ |
+| ➡️ | Auto Walk Forward | Jalan ke depan otomatis | ✅ |
+| 💨 | Dash Forward | Dash cepat ke depan (Press Q) | ✅ |
+| 🏃 | Auto Sprint | Sprint otomatis saat bergerak | ✅ |
 
-### 👤 Character (7 Modules)
+### 👤 Character (23 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 🛡️ | God Mode | Kebal damage | ✅ |
@@ -102,6 +113,22 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 💺 | Sit Spam | Spam duduk | ✅ |
 | 🪂 | Anti Fall Damage | Tidak kena damage jatuh | ✅ |
 | 💪 | Infinite Stamina | Stamina unlimited | ✅ |
+| 🗿 | Big Head | Kepala jadi besar | ✅ |
+| 🐜 | Tiny Character | Character jadi mini | ✅ |
+| 🦍 | Giant Character | Character jadi raksasa | ✅ |
+| 🎃 | Remove Head | Headless appearance | ✅ |
+| 🕴️ | Levitate | Animasi melayang | ✅ |
+| 🚫 | Anti Sit | Prevent duduk | ✅ |
+| 💺 | Force Sit | Paksa duduk terus | ✅ |
+| 💚 | Health Regen | Regenerasi HP otomatis | ✅ |
+| ❤️ | Infinite Health | HP unlimited | ✅ |
+| ❄️ | Freeze Position | Freeze posisi Y | ✅ |
+| 〰️ | Bobbing Character | Naik turun bobbing | ✅ |
+| 📳 | Vibrate Character | Getaran/shake | ✅ |
+| 🔄 | Flip Forward | Flip ke depan terus | ✅ |
+| 🤸 | Tumble Character | Tumbling random | ✅ |
+| ⚡ | Jitter Character | Glitchy jitter | ✅ |
+| 🎩 | Big Accessories | Aksesori jadi besar | ✅ |
 
 ### 🎬 Animation (5 Modules)
 | Icon | Module | Description | Status |
@@ -112,7 +139,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🎭 | Pose Modes | Mode pose keren | ✅ |
 | ❄️ | Animation Freeze | Freeze animasi | ✅ |
 
-### ⚔️ Combat (14 Modules)
+### ⚔️ Combat (25 Modules)
 
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
@@ -130,6 +157,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 💚 | Auto Heal | Auto heal saat HP < 70% | ✅ |
 | 🔥 | Weapon Spam | Spam weapon super cepat | ✅ |
 | 🚫 | Anti Ragdoll | Prevent ragdoll/stun dari serangan | ✅ |
+| 👀 | Laser Eyes | Tembak laser dari mata | ✅ |
+| 💣 | Explode On Touch | Ledakan saat sentuh | ✅ |
+| 🛡️ | Forcefield Shield | Shield forcefield | ✅ |
+| 🚫 | Auto Block | Block otomatis dengan tools | ✅ |
+| ⚡ | No Jump Cooldown | Jump tanpa cooldown | ✅ |
+| ⏹️ | Stop Animations | Stop semua animasi (Press R) | ✅ |
+| 🛡️ | Anti Fling | Prevent physics fling | ✅ |
+| 🧯 | Anti Fire | Hapus efek api | ✅ |
+| 🔨 | Big Tools | Tools jadi besar | ✅ |
+| 🛠️ | Multi Tool Equip | Equip semua tools sekaligus | ✅ |
 
 ### 💭 Social (3 Modules)
 | Icon | Module | Description | Status |
@@ -138,7 +175,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🌊 | Chat Flood | Flood chat | ✅ |
 | 🤫 | Whisper Spam | Spam whisper | ✅ |
 
-### 😈 Trolling (6 Modules)
+### 😈 Trolling (16 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 🎯 | Fling Player | Lempar player lain | ✅ |
@@ -147,19 +184,82 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 📢 | Spam Nearby | Spam ke player terdekat | ✅ |
 | 🚧 | Body Block | Block jalan player | ✅ |
 | 🤖 | Follow Bot | Bot yang ngikutin | ✅ |
+| 🧊 | Freeze Players | Freeze semua player lain | ✅ |
+| 🧲 | Bring All Players | Tarik semua player ke kamu | ✅ |
+| 🌀 | Orbit Players | Player orbit mengelilingi | ✅ |
+| 🔃 | Flip Players | Balik player jadi upside down | ✅ |
+| 👣 | Auto Follow Nearest | Follow player terdekat otomatis | ✅ |
+| 💥 | Explosion Click | Klik untuk ledakan | ✅ |
+| 👻 | Hide Players | Sembunyikan player lain | ✅ |
+| ☠️ | F To Kill | Press F untuk kill semua | ✅ |
+| ⚓ | Anchor Players | Anchor player di tempat | ✅ |
+| 💀 | Kill All | Kill semua player | ✅ |
 
-### 🔧 Utility (2 Modules)
+### 🔧 Utility (19 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | ⏰ | Anti AFK | Anti kick AFK | ✅ |
 | 🔓 | Anti Cheat Bypass | Bypass anti cheat | ✅ |
+| 🧱 | Platform Builder | Buat platform di bawah kaki | ✅ |
+| 🕐 | Time Control | Kontrol waktu siang/malam | ✅ |
+| 🔄 | Auto Respawn | Respawn otomatis saat mati | ✅ |
+| 🔍 | Zoom Increase | Zoom kamera lebih jauh | ✅ |
+| 🌪️ | Spin Speed | Spin character terus | ✅ |
+| 🌫️ | Remove Fog | Hapus fog | ✅ |
+| 🌞 | No Shadows | Disable bayangan | ✅ |
+| 🕳️ | Anti Void | Prevent jatuh ke void | ✅ |
+| 🎒 | Auto Equip | Equip tools otomatis | ✅ |
+| 🔒 | Shift Lock Bypass | Enable shift lock | ✅ |
+| ⚡ | Unlock FPS | Unlock FPS cap | ✅ |
+| 🌙 | Night Vision | Enhanced lighting malam | ✅ |
+| 💾 | Auto Checkpoint | Save posisi otomatis | ✅ |
+| 🏷️ | Hide Names | Sembunyikan nama player | ✅ |
+| 📷 | FOV Changer | Ubah field of view | ✅ |
+| 🪂 | Fall Saver | Auto save dari jatuh | ✅ |
+| 🔇 | Mute Sound | Mute semua suara game | ✅ |
+| 🎯 | Teleport To Player | Teleport ke player | ✅ |
 
-### 👁️ Visual (3 Modules)
+### 👁️ Visual (35 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 👁️ | ESP Wallhack | Lihat player lewat tembok | ✅ |
 | 🔍 | X-Ray Vision | Tembus pandang object | ✅ |
 | 💡 | Fullbright | Terang penuh tanpa bayangan | ✅ |
+| 🌈 | Rainbow Character | Efek warna pelangi | ✅ |
+| 👻 | Invisible Character | Character invisible | ✅ |
+| ✨ | Neon Character | Material neon | ✅ |
+| 💎 | Glass Character | Character kaca transparan | ✅ |
+| ⭐ | Shiny Character | Reflektif mengkilap | ✅ |
+| 👥 | Clone Trail | Trail clone di belakang | ✅ |
+| 💫 | Trail Follower | Trail berwarna | ✅ |
+| ✴️ | Particle Aura | Aura partikel | ✅ |
+| 🔥 | Fire Character | Character terbakar | ✅ |
+| 💨 | Smoke Effect | Efek asap | ✅ |
+| ✨ | Sparkle Character | Efek sparkles | ✅ |
+| ⬛ | Black Character | Character hitam | ✅ |
+| ⬜ | White Character | Character putih | ✅ |
+| 🔴 | Red Character | Character merah | ✅ |
+| 🔵 | Blue Character | Character biru | ✅ |
+| 🟢 | Green Character | Character hijau | ✅ |
+| 🟡 | Yellow Character | Character kuning | ✅ |
+| 🟣 | Purple Character | Character ungu | ✅ |
+| 🟠 | Orange Character | Character orange | ✅ |
+| ⚪ | Gray Character | Character abu-abu | ✅ |
+| 📦 | Box ESP | Kotak ESP di player | ✅ |
+| 👁️ | Player Highlight | Highlight player | ✅ |
+| 📍 | Player Tracker | Track player dengan jarak | ✅ |
+| 📸 | Camera Shake | Shake kamera | ✅ |
+| 🔄 | Camera Spin | Spin kamera | ✅ |
+| 👤 | First Person Lock | Lock first person | ✅ |
+| 👥 | Third Person Lock | Lock third person | ✅ |
+| ⚫ | Black & White Mode | Mode hitam putih | ✅ |
+| 🌫️ | Blur Screen | Blur layar | ✅ |
+| 💙 | Blue Tint | Tint biru | ✅ |
+| ❤️ | Red Tint | Tint merah | ✅ |
+| 🌈 | Rainbow Screen | Tint rainbow | ✅ |
+| ☀️ | Sun Rays | Efek sun rays | ✅ |
+| ✨ | Bloom Effect | Bloom lighting | ✅ |
+| 🌐 | Invisible World | Dunia jadi invisible | ✅ |
 
 ### 🤖 Automation (3 Modules)
 | Icon | Module | Description | Status |
