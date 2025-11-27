@@ -3,11 +3,11 @@
 <div align="center">
 
 ![Version](https://img.shields.io/badge/version-3.0-blueviolet)
-![Modules](https://img.shields.io/badge/modules-153-brightgreen)
+![Modules](https://img.shields.io/badge/modules-253-brightgreen)
 ![Status](https://img.shields.io/badge/status-active-success)
 ![Platform](https://img.shields.io/badge/platform-Roblox-red)
 
-**Modern Script Hub untuk Roblox dengan 153+ Module Powerful**
+**Modern Script Hub untuk Roblox dengan 253+ Module Powerful**
 
 [Features](#-features) • [Installation](#-installation) • [Modules](#-modules) • [Usage](#-usage) • [Contributing](#-contributing)
 
@@ -40,7 +40,7 @@
 - **Drag & Drop** - Bisa dipindah kemana saja sesuai keinginan
 
 ### 🚀 Powerful Features
-- ✅ 153 Modules siap pakai
+- ✅ 253 Modules siap pakai
 - ✅ 10 Kategori terorganisir
 - ✅ Search function untuk cari module cepat
 - ✅ Toggle ON/OFF dengan status real-time
@@ -77,7 +77,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 
 ## 📦 Modules List
 
-### 🏃 Movement (24 Modules)
+### 🏃 Movement (34 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | ⚡ | Speed Hack | Kecepatan lari unlimited | ✅ |
@@ -102,8 +102,18 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | ➡️ | Auto Walk Forward | Jalan ke depan otomatis | ✅ |
 | 💨 | Dash Forward | Dash cepat ke depan (Press Q) | ✅ |
 | 🏃 | Auto Sprint | Sprint otomatis saat bergerak | ✅ |
+| 🛷 | Slide Movement | Slide on ground like ice | ✅ |
+| 🏃 | Parkour Jump | Advanced parkour jumping | ✅ |
+| 🧗 | Wall Run | Run along walls | ✅ |
+| ⬆️ | Double Jump | Jump again in mid-air | ✅ |
+| 💨 | Dash Ability | Quick dash in any direction | ✅ |
+| 🪝 | Grappling Hook | Grapple to surfaces | ✅ |
+| 🚀 | Rocket Jump | Jump with rocket boost | ✅ |
+| ⚡ | Teleport Dash | Short-range teleport dash | ✅ |
+| ☁️ | Air Walk | Walk in mid-air | ✅ |
+| ⚡ | Momentum Boost | Increase movement momentum | ✅ |
 
-### 👤 Character (23 Modules)
+### 👤 Character (33 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 🛡️ | God Mode | Kebal damage | ✅ |
@@ -129,6 +139,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🤸 | Tumble Character | Tumbling random | ✅ |
 | ⚡ | Jitter Character | Glitchy jitter | ✅ |
 | 🎩 | Big Accessories | Aksesori jadi besar | ✅ |
+| 🎤 | Voice Changer | Changes character voice | ✅ |
+| 😀 | Face Changer | Rapidly change facial expressions | ✅ |
+| 🤸 | Limb Stretch | Stretch limbs like rubber | ✅ |
+| 👻 | Body Transparency | Make body parts transparent | ✅ |
+| 🙃 | Flip Upside Down | Walk upside down | ✅ |
+| 🪞 | Mirror Mode | Mirror all movements | ✅ |
+| 🐌 | Slow Motion | Character moves in slow motion | ✅ |
+| ⏩ | Fast Forward | Character moves super fast | ✅ |
+| ◀️ | Backwards Walk | Walk backwards automatically | ✅ |
+| 🚶 | T-Pose Lock | Lock in T-pose | ✅ |
 
 ### 🎬 Animation (5 Modules)
 | Icon | Module | Description | Status |
@@ -139,7 +159,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🎭 | Pose Modes | Mode pose keren | ✅ |
 | ❄️ | Animation Freeze | Freeze animasi | ✅ |
 
-### ⚔️ Combat (25 Modules)
+### ⚔️ Combat (35 Modules)
 
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
@@ -167,6 +187,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🧯 | Anti Fire | Hapus efek api | ✅ |
 | 🔨 | Big Tools | Tools jadi besar | ✅ |
 | 🛠️ | Multi Tool Equip | Equip semua tools sekaligus | ✅ |
+| 🎯 | Auto Target | Automatically target nearest enemy | ✅ |
+| 🛡️ | Shield Block | Auto-shield when attacked | ✅ |
+| ⚔️ | Counter Attack | Auto counter when hit | ✅ |
+| 😡 | Berserker Mode | Increased damage when low health | ✅ |
+| 🧛 | Vampire | Steal health from enemies | ✅ |
+| ☠️ | Poison Touch | Poison enemies on contact | ✅ |
+| ❄️ | Freeze Touch | Freeze enemies you touch | ✅ |
+| 💥 | Knock Back | Knock back enemies stronger | ✅ |
+| 💚 | Shield Regeneration | Regenerate shield over time | ✅ |
+| 💢 | Critical Strike | Higher critical hit chance | ✅ |
 
 ### 💭 Social (3 Modules)
 | Icon | Module | Description | Status |
@@ -175,7 +205,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🌊 | Chat Flood | Flood chat | ✅ |
 | 🤫 | Whisper Spam | Spam whisper | ✅ |
 
-### 😈 Trolling (16 Modules)
+### 😈 Trolling (66 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 🎯 | Fling Player | Lempar player lain | ✅ |
@@ -194,8 +224,58 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | ☠️ | F To Kill | Press F untuk kill semua | ✅ |
 | ⚓ | Anchor Players | Anchor player di tempat | ✅ |
 | 💀 | Kill All | Kill semua player | ✅ |
+| 💃 | Disco Floor | Colorful disco lights under character | ✅ |
+| 🎆 | Firework Spam | Continuous fireworks around you | ✅ |
+| 😂 | Giant Emoji | Giant 3D emoji above head | ✅ |
+| 🌈 | Rainbow Trail Mega | Massive rainbow trail | ✅ |
+| 🎊 | Confetti Explosion | Continuous confetti particles | ✅ |
+| ⚡ | Lightning Strike | Lightning effects striking around | ✅ |
+| 🌀 | Portal Spam | Portal visual effects | ✅ |
+| 💬 | Floating Text Spam | 3D text floating around | ✅ |
+| 👥 | Clone Army | Visual clones circling you | ✅ |
+| 🌎 | Earthquake Effect | Shaking camera effect | ✅ |
+| 🌪️ | Tornado Spawn | Visual tornado effect | ✅ |
+| ⚫ | Black Hole Effect | Swirling black hole | ✅ |
+| ☀️ | Sun Aura | Bright glowing sun | ✅ |
+| 🌙 | Moon Walk Trail | Glowing footsteps | ✅ |
+| 🫧 | Bubble Shield | Giant bubble shield | ✅ |
+| 💻 | Matrix Rain | Matrix-style falling code | ✅ |
+| ❄️ | Ice Freeze Effect | Icy particles | ✅ |
+| 🌋 | Lava Pool | Lava under character | ✅ |
+| ✨ | Teleport Spam Visual | Rapid teleport effects | ✅ |
+| ✋ | Giant Hands | Oversized hands | ✅ |
+| 🛸 | Floating Platform | Visible platform | ✅ |
+| 💥 | Rainbow Explosion | Rainbow explosions | ✅ |
+| 🔳 | Neon Outline Thick | Thick neon outline | ✅ |
+| 👻 | Ghost Trail | Ghostly after-images | ✅ |
+| 🌀 | Spiral Aura | Spiraling particles | ✅ |
+| ⚡ | Electric Aura | Electric sparks | ✅ |
+| 🎨 | Color Shift Rapid | Rapidly changing colors | ✅ |
+| ↕️ | Size Oscillate | Size changes rapidly | ✅ |
+| 🌪️ | Spin Crazy | Extremely fast spinning | ✅ |
+| ⬆️ | Float Bounce | Bouncing while floating | ✅ |
+| 🪞 | Mirror Clone | Mirror image clone | ✅ |
+| 👁️ | Hologram Effect | Holographic flickering | ✅ |
+| 🛡️ | Forcefield Spam | Multiple forcefields | ✅ |
+| 🧱 | Part Spam World | Spawns parts | ✅ |
+| 🔦 | Beam Spam | Laser beams from character | ✅ |
+| 🎩 | Attachment Spam | Tons of accessories | ✅ |
+| 🌈 | Trail Rainbow Parts | Rainbow part trails | ✅ |
+| 💣 | Explosion Walker | Explosions when walking | ✅ |
+| 🔊 | Sound Spam | Loud sounds | ✅ |
+| 🎵 | Music Player | Music everyone hears | ✅ |
+| 💫 | Shockwave Pulse | Shockwave effects | ✅ |
+| 🌌 | Cosmic Aura | Galaxy particles | ✅ |
+| 👼 | Angel Wings | Glowing wings | ✅ |
+| 😈 | Demon Aura | Dark particles | ✅ |
+| 🕯️ | Pillar of Light | Light beam from sky | ✅ |
+| 🪨 | Ground Crack | Cracking ground effect | ✅ |
+| ❄️ | Snowstorm | Snow particles | ✅ |
+| 🍃 | Leaf Tornado | Swirling leaves | ✅ |
+| ⚡ | Energy Sphere | Pulsing energy sphere | ✅ |
+| 📺 | Glitch Effect | Visual glitching | ✅ |
 
-### 🔧 Utility (19 Modules)
+### 🔧 Utility (29 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | ⏰ | Anti AFK | Anti kick AFK | ✅ |
@@ -218,8 +298,18 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | 🪂 | Fall Saver | Auto save dari jatuh | ✅ |
 | 🔇 | Mute Sound | Mute semua suara game | ✅ |
 | 🎯 | Teleport To Player | Teleport ke player | ✅ |
+| 📍 | Waypoint Teleport | Set and teleport to waypoints | ✅ |
+| 👑 | Admin Commands | Enable admin commands | ✅ |
+| 🔍 | Infinite Zoom | Remove zoom limits | ✅ |
+| 🔄 | Fast Reset | Instant character reset | ✅ |
+| 🗺️ | Coordinate Display | Show current coordinates | ✅ |
+| 📋 | Player List ESP | Enhanced player list | ✅ |
+| 🌐 | Server Hop | Quick server hopping | ✅ |
+| 🔄 | Rejoin Server | Quick rejoin | ✅ |
+| ⚡ | FPS Booster | Optimize performance | ✅ |
+| 📸 | Screenshot Mode | Hide UI for screenshots | ✅ |
 
-### 👁️ Visual (35 Modules)
+### 👁️ Visual (45 Modules)
 | Icon | Module | Description | Status |
 |------|--------|-------------|--------|
 | 👁️ | ESP Wallhack | Lihat player lewat tembok | ✅ |
@@ -260,6 +350,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscri
 | ☀️ | Sun Rays | Efek sun rays | ✅ |
 | ✨ | Bloom Effect | Bloom lighting | ✅ |
 | 🌐 | Invisible World | Dunia jadi invisible | ✅ |
+| 🎨 | Color Grading | Custom color filters | ✅ |
+| ⚫ | Vignette Effect | Dark edges on screen | ✅ |
+| 📷 | Depth of Field | Blur background | ✅ |
+| 🌈 | Chromatic Aberration | RGB split effect | ✅ |
+| 📹 | Film Grain | Old film grain effect | ✅ |
+| 🟦 | Pixelate Screen | Pixelated view | ✅ |
+| 🌙 | Night Vision Green | Green night vision | ✅ |
+| 🔥 | Thermal Vision | Heat-based vision | ✅ |
+| 👥 | Outline Players | Outline all players | ✅ |
+| 💎 | Highlight Loot | Highlight items | ✅ |
 
 ### 🤖 Automation (3 Modules)
 | Icon | Module | Description | Status |

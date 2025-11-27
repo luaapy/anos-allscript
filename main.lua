@@ -65,8 +65,6 @@ local Modules = {
     {name = "Hitbox Expander", file = "hitbox-expander.lua", category = "Combat", icon = "📦", color = Color3.fromRGB(255, 99, 71)},
     {name = "Silent Aim", file = "silent-aim.lua", category = "Combat", icon = "🎯", color = Color3.fromRGB(220, 20, 60)},
     {name = "Infinite Stamina", file = "infinite-stamina.lua", category = "Character", icon = "💪", color = Color3.fromRGB(255, 140, 0)},
-    
-    -- New Visual Effect Modules
     {name = "Rainbow Character", file = "rainbow-character.lua", category = "Visual", icon = "🌈", color = Color3.fromRGB(255, 0, 255)},
     {name = "Invisible Character", file = "invisible-character.lua", category = "Visual", icon = "👻", color = Color3.fromRGB(200, 200, 255)},
     {name = "Neon Character", file = "neon-character.lua", category = "Visual", icon = "✨", color = Color3.fromRGB(0, 255, 255)},
@@ -87,8 +85,6 @@ local Modules = {
     {name = "Purple Character", file = "purple-character.lua", category = "Visual", icon = "🟣", color = Color3.fromRGB(128, 0, 128)},
     {name = "Orange Character", file = "orange-character.lua", category = "Visual", icon = "🟠", color = Color3.fromRGB(255, 165, 0)},
     {name = "Gray Character", file = "gray-character.lua", category = "Visual", icon = "⚪", color = Color3.fromRGB(128, 128, 128)},
-    
-    -- New Movement Modules
     {name = "Gravity Control", file = "gravity-control.lua", category = "Movement", icon = "🌍", color = Color3.fromRGB(100, 149, 237)},
     {name = "Super Jump", file = "super-jump.lua", category = "Movement", icon = "⬆️", color = Color3.fromRGB(0, 191, 255)},
     {name = "Wall Climb", file = "wall-climb.lua", category = "Movement", icon = "🧗", color = Color3.fromRGB(139, 69, 19)},
@@ -101,8 +97,6 @@ local Modules = {
     {name = "Auto Walk Forward", file = "auto-walk-forward.lua", category = "Movement", icon = "➡️", color = Color3.fromRGB(70, 130, 180)},
     {name = "Dash Forward", file = "dash-forward.lua", category = "Movement", icon = "💨", color = Color3.fromRGB(135, 206, 250)},
     {name = "Auto Sprint", file = "auto-sprint.lua", category = "Movement", icon = "🏃", color = Color3.fromRGB(255, 215, 0)},
-    
-    -- New Character Modules
     {name = "Big Head", file = "big-head.lua", category = "Character", icon = "🗿", color = Color3.fromRGB(255, 140, 0)},
     {name = "Tiny Character", file = "tiny-character.lua", category = "Character", icon = "🐜", color = Color3.fromRGB(255, 105, 180)},
     {name = "Giant Character", file = "giant-character.lua", category = "Character", icon = "🦍", color = Color3.fromRGB(34, 139, 34)},
@@ -119,8 +113,6 @@ local Modules = {
     {name = "Tumble Character", file = "tumble-character.lua", category = "Character", icon = "🤸", color = Color3.fromRGB(255, 105, 180)},
     {name = "Jitter Character", file = "jitter-character.lua", category = "Character", icon = "⚡", color = Color3.fromRGB(255, 255, 0)},
     {name = "Big Accessories", file = "big-accessories.lua", category = "Character", icon = "🎩", color = Color3.fromRGB(255, 192, 203)},
-    
-    -- New Trolling Modules
     {name = "Freeze Players", file = "freeze-players.lua", category = "Trolling", icon = "🧊", color = Color3.fromRGB(0, 191, 255)},
     {name = "Bring All Players", file = "bring-all-players.lua", category = "Trolling", icon = "🧲", color = Color3.fromRGB(255, 0, 127)},
     {name = "Orbit Players", file = "orbit-players.lua", category = "Trolling", icon = "🌀", color = Color3.fromRGB(138, 43, 226)},
@@ -131,8 +123,6 @@ local Modules = {
     {name = "F To Kill", file = "f-to-kill.lua", category = "Trolling", icon = "☠️", color = Color3.fromRGB(139, 0, 0)},
     {name = "Anchor Players", file = "anchor-players.lua", category = "Trolling", icon = "⚓", color = Color3.fromRGB(70, 130, 180)},
     {name = "Kill All", file = "kill-all.lua", category = "Trolling", icon = "💀", color = Color3.fromRGB(220, 20, 60)},
-    
-    -- New Utility Modules
     {name = "Platform Builder", file = "platform-builder.lua", category = "Utility", icon = "🧱", color = Color3.fromRGB(139, 69, 19)},
     {name = "Time Control", file = "time-control.lua", category = "Utility", icon = "🕐", color = Color3.fromRGB(255, 215, 0)},
     {name = "Auto Respawn", file = "auto-respawn.lua", category = "Utility", icon = "🔄", color = Color3.fromRGB(32, 178, 170)},
@@ -150,8 +140,6 @@ local Modules = {
     {name = "FOV Changer", file = "fov-changer.lua", category = "Utility", icon = "📷", color = Color3.fromRGB(100, 149, 237)},
     {name = "Fall Saver", file = "fall-saver.lua", category = "Utility", icon = "🪂", color = Color3.fromRGB(30, 144, 255)},
     {name = "Mute Sound", file = "mute-sound.lua", category = "Utility", icon = "🔇", color = Color3.fromRGB(128, 128, 128)},
-    
-    -- New Combat Modules
     {name = "Laser Eyes", file = "laser-eyes.lua", category = "Combat", icon = "👀", color = Color3.fromRGB(255, 0, 0)},
     {name = "Explode On Touch", file = "explode-on-touch.lua", category = "Combat", icon = "💣", color = Color3.fromRGB(255, 69, 0)},
     {name = "Forcefield Shield", file = "forcefield-shield.lua", category = "Combat", icon = "🛡️", color = Color3.fromRGB(0, 191, 255)},
@@ -177,13 +165,126 @@ local Modules = {
     {name = "Sun Rays", file = "sun-rays.lua", category = "Visual", icon = "☀️", color = Color3.fromRGB(255, 255, 0)},
     {name = "Bloom Effect", file = "bloom-effect.lua", category = "Visual", icon = "✨", color = Color3.fromRGB(255, 215, 0)},
     {name = "Invisible World", file = "invisible-world.lua", category = "Visual", icon = "🌐", color = Color3.fromRGB(200, 200, 255)},
-    {name = "Teleport To Player", file = "teleport-to-player.lua", category = "Utility", icon = "🎯", color = Color3.fromRGB(64, 224, 208)}
+    {name = "Teleport To Player", file = "teleport-to-player.lua", category = "Utility", icon = "🎯", color = Color3.fromRGB(64, 224, 208)},
+    
+    -- New Troll Modules (50)
+    {name = "Disco Floor", file = "disco-floor.lua", category = "Trolling", icon = "💃", color = Color3.fromRGB(255, 0, 255)},
+    {name = "Firework Spam", file = "firework-spam.lua", category = "Trolling", icon = "🎆", color = Color3.fromRGB(255, 100, 0)},
+    {name = "Giant Emoji", file = "giant-emoji.lua", category = "Trolling", icon = "😂", color = Color3.fromRGB(255, 255, 0)},
+    {name = "Rainbow Trail Mega", file = "rainbow-trail-mega.lua", category = "Trolling", icon = "🌈", color = Color3.fromRGB(255, 0, 255)},
+    {name = "Confetti Explosion", file = "confetti-explosion.lua", category = "Trolling", icon = "🎊", color = Color3.fromRGB(255, 105, 180)},
+    {name = "Lightning Strike", file = "lightning-strike.lua", category = "Trolling", icon = "⚡", color = Color3.fromRGB(255, 255, 255)},
+    {name = "Portal Spam", file = "portal-spam.lua", category = "Trolling", icon = "🌀", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Floating Text Spam", file = "floating-text-spam.lua", category = "Trolling", icon = "💬", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Clone Army", file = "clone-army.lua", category = "Trolling", icon = "👥", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Earthquake Effect", file = "earthquake-effect.lua", category = "Trolling", icon = "🌎", color = Color3.fromRGB(139, 69, 19)},
+    {name = "Tornado Spawn", file = "tornado-spawn.lua", category = "Trolling", icon = "🌪️", color = Color3.fromRGB(64, 224, 208)},
+    {name = "Black Hole Effect", file = "black-hole-effect.lua", category = "Trolling", icon = "⚫", color = Color3.fromRGB(0, 0, 0)},
+    {name = "Sun Aura", file = "sun-aura.lua", category = "Trolling", icon = "☀️", color = Color3.fromRGB(255, 255, 0)},
+    {name = "Moon Walk Trail", file = "moon-walk-trail.lua", category = "Trolling", icon = "🌙", color = Color3.fromRGB(255, 255, 224)},
+    {name = "Bubble Shield", file = "bubble-shield.lua", category = "Trolling", icon = "🫧", color = Color3.fromRGB(0, 191, 255)},
+    {name = "Matrix Rain", file = "matrix-rain.lua", category = "Trolling", icon = "💻", color = Color3.fromRGB(0, 255, 0)},
+    {name = "Ice Freeze Effect", file = "ice-freeze-effect.lua", category = "Trolling", icon = "❄️", color = Color3.fromRGB(100, 200, 255)},
+    {name = "Lava Pool", file = "lava-pool.lua", category = "Trolling", icon = "🌋", color = Color3.fromRGB(255, 100, 0)},
+    {name = "Teleport Spam Visual", file = "teleport-spam-visual.lua", category = "Trolling", icon = "✨", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Giant Hands", file = "giant-hands.lua", category = "Trolling", icon = "✋", color = Color3.fromRGB(255, 192, 203)},
+    {name = "Floating Platform", file = "floating-platform.lua", category = "Trolling", icon = "🛸", color = Color3.fromRGB(135, 206, 250)},
+    {name = "Rainbow Explosion", file = "rainbow-explosion.lua", category = "Trolling", icon = "💥", color = Color3.fromRGB(255, 0, 127)},
+    {name = "Neon Outline Thick", file = "neon-outline-thick.lua", category = "Trolling", icon = "🔳", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Ghost Trail", file = "ghost-trail.lua", category = "Trolling", icon = "👻", color = Color3.fromRGB(200, 200, 255)},
+    {name = "Spiral Aura", file = "spiral-aura.lua", category = "Trolling", icon = "🌀", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Electric Aura", file = "electric-aura.lua", category = "Trolling", icon = "⚡", color = Color3.fromRGB(255, 255, 0)},
+    {name = "Color Shift Rapid", file = "color-shift-rapid.lua", category = "Trolling", icon = "🎨", color = Color3.fromRGB(255, 0, 255)},
+    {name = "Size Oscillate", file = "size-oscillate.lua", category = "Trolling", icon = "↕️", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Spin Crazy", file = "spin-crazy.lua", category = "Trolling", icon = "🌪️", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Float Bounce", file = "float-bounce.lua", category = "Trolling", icon = "⬆️", color = Color3.fromRGB(0, 191, 255)},
+    {name = "Mirror Clone", file = "mirror-clone.lua", category = "Trolling", icon = "🪞", color = Color3.fromRGB(135, 206, 250)},
+    {name = "Hologram Effect", file = "hologram-effect.lua", category = "Trolling", icon = "👁️", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Forcefield Spam", file = "forcefield-spam.lua", category = "Trolling", icon = "🛡️", color = Color3.fromRGB(0, 191, 255)},
+    {name = "Part Spam World", file = "part-spam-world.lua", category = "Trolling", icon = "🧱", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Beam Spam", file = "beam-spam.lua", category = "Trolling", icon = "🔦", color = Color3.fromRGB(255, 0, 0)},
+    {name = "Attachment Spam", file = "attachment-spam.lua", category = "Trolling", icon = "🎩", color = Color3.fromRGB(255, 192, 203)},
+    {name = "Trail Rainbow Parts", file = "trail-rainbow-parts.lua", category = "Trolling", icon = "🌈", color = Color3.fromRGB(255, 0, 255)},
+    {name = "Explosion Walker", file = "explosion-walker.lua", category = "Trolling", icon = "💣", color = Color3.fromRGB(255, 69, 0)},
+    {name = "Sound Spam", file = "sound-spam.lua", category = "Trolling", icon = "🔊", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Music Player", file = "music-player.lua", category = "Trolling", icon = "🎵", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Shockwave Pulse", file = "shockwave-pulse.lua", category = "Trolling", icon = "💫", color = Color3.fromRGB(0, 191, 255)},
+    {name = "Cosmic Aura", file = "cosmic-aura.lua", category = "Trolling", icon = "🌌", color = Color3.fromRGB(75, 0, 130)},
+    {name = "Angel Wings", file = "angel-wings.lua", category = "Trolling", icon = "👼", color = Color3.fromRGB(255, 255, 255)},
+    {name = "Demon Aura", file = "demon-aura.lua", category = "Trolling", icon = "😈", color = Color3.fromRGB(139, 0, 0)},
+    {name = "Pillar of Light", file = "pillar-of-light.lua", category = "Trolling", icon = "🕯️", color = Color3.fromRGB(255, 255, 255)},
+    {name = "Ground Crack", file = "ground-crack.lua", category = "Trolling", icon = "🪨", color = Color3.fromRGB(139, 69, 19)},
+    {name = "Snowstorm", file = "snowstorm.lua", category = "Trolling", icon = "❄️", color = Color3.fromRGB(255, 255, 255)},
+    {name = "Leaf Tornado", file = "leaf-tornado.lua", category = "Trolling", icon = "🍃", color = Color3.fromRGB(0, 128, 0)},
+    {name = "Energy Sphere", file = "energy-sphere.lua", category = "Trolling", icon = "⚡", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Glitch Effect", file = "glitch-effect.lua", category = "Trolling", icon = "📺", color = Color3.fromRGB(138, 43, 226)},
+    
+    -- New Movement Modules (10)
+    {name = "Slide Movement", file = "slide-movement.lua", category = "Movement", icon = "🛷", color = Color3.fromRGB(135, 206, 250)},
+    {name = "Parkour Jump", file = "parkour-jump.lua", category = "Movement", icon = "🏃", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Wall Run", file = "wall-run.lua", category = "Movement", icon = "🧗", color = Color3.fromRGB(139, 69, 19)},
+    {name = "Double Jump", file = "double-jump.lua", category = "Movement", icon = "⬆️", color = Color3.fromRGB(0, 191, 255)},
+    {name = "Dash Ability", file = "dash-ability.lua", category = "Movement", icon = "💨", color = Color3.fromRGB(135, 206, 250)},
+    {name = "Grappling Hook", file = "grappling-hook.lua", category = "Movement", icon = "🪝", color = Color3.fromRGB(128, 128, 128)},
+    {name = "Rocket Jump", file = "rocket-jump.lua", category = "Movement", icon = "🚀", color = Color3.fromRGB(255, 69, 0)},
+    {name = "Teleport Dash", file = "teleport-dash.lua", category = "Movement", icon = "⚡", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Air Walk", file = "air-walk.lua", category = "Movement", icon = "☁️", color = Color3.fromRGB(173, 216, 230)},
+    {name = "Momentum Boost", file = "momentum-boost.lua", category = "Movement", icon = "⚡", color = Color3.fromRGB(255, 215, 0)},
+    
+    -- New Character Modules (10)
+    {name = "Voice Changer", file = "voice-changer.lua", category = "Character", icon = "🎤", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Face Changer", file = "face-changer.lua", category = "Character", icon = "😀", color = Color3.fromRGB(255, 215, 0)},
+    {name = "Limb Stretch", file = "limb-stretch.lua", category = "Character", icon = "🤸", color = Color3.fromRGB(255, 105, 180)},
+    {name = "Body Transparency", file = "body-transparency.lua", category = "Character", icon = "👻", color = Color3.fromRGB(200, 200, 255)},
+    {name = "Flip Upside Down", file = "flip-upside-down.lua", category = "Character", icon = "🙃", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Mirror Mode", file = "mirror-mode.lua", category = "Character", icon = "🪞", color = Color3.fromRGB(135, 206, 250)},
+    {name = "Slow Motion", file = "slow-motion.lua", category = "Character", icon = "🐌", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Fast Forward", file = "fast-forward.lua", category = "Character", icon = "⏩", color = Color3.fromRGB(255, 69, 0)},
+    {name = "Backwards Walk", file = "backwards-walk.lua", category = "Character", icon = "◀️", color = Color3.fromRGB(138, 43, 226)},
+    {name = "T-Pose Lock", file = "t-pose-lock.lua", category = "Character", icon = "🚶", color = Color3.fromRGB(128, 128, 128)},
+    
+    -- New Combat Modules (10)
+    {name = "Auto Target", file = "auto-target.lua", category = "Combat", icon = "🎯", color = Color3.fromRGB(255, 0, 127)},
+    {name = "Shield Block", file = "shield-block.lua", category = "Combat", icon = "🛡️", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Counter Attack", file = "counter-attack.lua", category = "Combat", icon = "⚔️", color = Color3.fromRGB(220, 20, 60)},
+    {name = "Berserker Mode", file = "berserker-mode.lua", category = "Combat", icon = "😡", color = Color3.fromRGB(255, 0, 0)},
+    {name = "Vampire", file = "vampire.lua", category = "Combat", icon = "🧛", color = Color3.fromRGB(139, 0, 0)},
+    {name = "Poison Touch", file = "poison-touch.lua", category = "Combat", icon = "☠️", color = Color3.fromRGB(0, 128, 0)},
+    {name = "Freeze Touch", file = "freeze-touch.lua", category = "Combat", icon = "❄️", color = Color3.fromRGB(100, 200, 255)},
+    {name = "Knock Back", file = "knock-back.lua", category = "Combat", icon = "💥", color = Color3.fromRGB(255, 140, 0)},
+    {name = "Shield Regeneration", file = "shield-regeneration.lua", category = "Combat", icon = "💚", color = Color3.fromRGB(50, 205, 50)},
+    {name = "Critical Strike", file = "critical-strike.lua", category = "Combat", icon = "💢", color = Color3.fromRGB(220, 20, 60)},
+    
+    -- New Visual Modules (10)
+    {name = "Color Grading", file = "color-grading.lua", category = "Visual", icon = "🎨", color = Color3.fromRGB(255, 0, 255)},
+    {name = "Vignette Effect", file = "vignette-effect.lua", category = "Visual", icon = "⚫", color = Color3.fromRGB(64, 64, 64)},
+    {name = "Depth of Field", file = "depth-of-field.lua", category = "Visual", icon = "📷", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Chromatic Aberration", file = "chromatic-aberration.lua", category = "Visual", icon = "🌈", color = Color3.fromRGB(255, 0, 255)},
+    {name = "Film Grain", file = "film-grain.lua", category = "Visual", icon = "📹", color = Color3.fromRGB(192, 192, 192)},
+    {name = "Pixelate Screen", file = "pixelate-screen.lua", category = "Visual", icon = "🟦", color = Color3.fromRGB(0, 0, 255)},
+    {name = "Night Vision Green", file = "night-vision-green.lua", category = "Visual", icon = "🌙", color = Color3.fromRGB(0, 255, 0)},
+    {name = "Thermal Vision", file = "thermal-vision.lua", category = "Visual", icon = "🔥", color = Color3.fromRGB(255, 100, 0)},
+    {name = "Outline Players", file = "outline-players.lua", category = "Visual", icon = "👥", color = Color3.fromRGB(0, 255, 255)},
+    {name = "Highlight Loot", file = "highlight-loot.lua", category = "Visual", icon = "💎", color = Color3.fromRGB(255, 215, 0)},
+    
+    -- New Utility Modules (10)
+    {name = "Waypoint Teleport", file = "waypoint-teleport.lua", category = "Utility", icon = "📍", color = Color3.fromRGB(255, 0, 127)},
+    {name = "Admin Commands", file = "admin-commands.lua", category = "Utility", icon = "👑", color = Color3.fromRGB(255, 215, 0)},
+    {name = "Infinite Zoom", file = "infinite-zoom.lua", category = "Utility", icon = "🔍", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Fast Reset", file = "fast-reset.lua", category = "Utility", icon = "🔄", color = Color3.fromRGB(255, 69, 0)},
+    {name = "Coordinate Display", file = "coordinate-display.lua", category = "Utility", icon = "🗺️", color = Color3.fromRGB(70, 130, 180)},
+    {name = "Player List ESP", file = "player-list-esp.lua", category = "Utility", icon = "📋", color = Color3.fromRGB(100, 149, 237)},
+    {name = "Server Hop", file = "server-hop.lua", category = "Utility", icon = "🌐", color = Color3.fromRGB(138, 43, 226)},
+    {name = "Rejoin Server", file = "rejoin-server.lua", category = "Utility", icon = "🔄", color = Color3.fromRGB(0, 191, 255)},
+    {name = "FPS Booster", file = "fps-booster.lua", category = "Utility", icon = "⚡", color = Color3.fromRGB(255, 255, 0)},
+    {name = "Screenshot Mode", file = "screenshot-mode.lua", category = "Utility", icon = "📸", color = Color3.fromRGB(138, 43, 226)}
 }
 
 local HubGui = Instance.new("ScreenGui")
 HubGui.Name = "ANOS_PREMIUM_HUB"
 HubGui.Parent = PlayerGui
 HubGui.ResetOnSpawn = false
+HubGui.DisplayOrder = 10000
 HubGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local BlurEffect = Instance.new("BlurEffect")
@@ -199,6 +300,7 @@ MainContainer.BackgroundTransparency = 1
 MainContainer.Position = UDim2.new(0.5, 0, 0.5, 0)
 MainContainer.Size = UDim2.new(0, 0, 0, 0)
 MainContainer.Visible = false
+MainContainer.ZIndex = 10000
 
 local LeftPanel = Instance.new("Frame")
 LeftPanel.Name = "LeftPanel"
@@ -293,15 +395,15 @@ CategoryLayout.Padding = UDim.new(0, 5)
 CategoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 local categories = {
-    {name = "All", icon = "📋", count = 153},
-    {name = "Movement", icon = "🏃", count = 24},
-    {name = "Character", icon = "👤", count = 23},
+    {name = "All", icon = "📋", count = 253},
+    {name = "Movement", icon = "🏃", count = 34},
+    {name = "Character", icon = "👤", count = 33},
     {name = "Animation", icon = "🎬", count = 5},
-    {name = "Combat", icon = "⚔️", count = 25},
+    {name = "Combat", icon = "⚔️", count = 35},
     {name = "Social", icon = "💭", count = 3},
-    {name = "Trolling", icon = "😈", count = 16},
-    {name = "Utility", icon = "🔧", count = 19},
-    {name = "Visual", icon = "👁️", count = 35},
+    {name = "Trolling", icon = "😈", count = 66},
+    {name = "Utility", icon = "🔧", count = 29},
+    {name = "Visual", icon = "👁️", count = 45},
     {name = "Automation", icon = "🤖", count = 3}
 }
 
@@ -445,7 +547,7 @@ StatusLabel.BackgroundTransparency = 1
 StatusLabel.Position = UDim2.new(0, 0, 0.5, 0)
 StatusLabel.Size = UDim2.new(1, 0, 0.5, 0)
 StatusLabel.Font = Enum.Font.Gotham
-StatusLabel.Text = "153 Modules Loaded"
+StatusLabel.Text = "253 Modules Loaded"
 StatusLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
 StatusLabel.TextSize = 10
 
@@ -681,6 +783,14 @@ local function createModuleCard(module, index)
         end
     end)
     
+    if ModuleStates[module.file] then
+        toggleBtn.Text = "DEACTIVATE"
+        toggleBtn.BackgroundColor3 = module.color
+        toggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        statusDot.BackgroundColor3 = module.color
+        cardStroke.Transparency = 0
+    end
+    
     return card
 end
 
@@ -834,7 +944,7 @@ ToggleButton.Font = Enum.Font.GothamBold
 ToggleButton.Text = "ANOS"
 ToggleButton.TextColor3 = Color3.fromRGB(0, 255, 255)
 ToggleButton.TextSize = 12
-ToggleButton.ZIndex = 100
+ToggleButton.ZIndex = 10001
 
 local ToggleCorner = Instance.new("UICorner")
 ToggleCorner.CornerRadius = UDim.new(1, 0)
@@ -1066,9 +1176,23 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
     Duration = 4;
 })
 
-print("╔════════════════════════════════════════╗")
-print("║   ⚡ ANOS PREMIUM HUB - CYBERPUNK ⚡   ║")
-print("║  GitHub: anos-rgb/anos-allscript      ║")
-print("║  Total Modules: 153                   ║")
-print("║  UI Version: 3.0 Premium Edition      ║")
-print("╚════════════════════════════════════════╝")
+print("\n")
+    print("▓█████████████████████████████████████████████████████████████")
+    print("▓                                                             ")
+    print("▓   ░█████╗░███╗░░██╗░█████╗░░██████╗  ██╗░░██╗██╗░░░██╗██████╗░")
+    print("▓   ██╔══██╗████╗░██║██╔══██╗██╔════╝  ██║░░██║██║░░░██║██╔══██╗")
+    print("▓   ███████║██╔██╗██║██║░░██║╚█████╗░  ███████║██║░░░██║██████╦╝")
+    print("▓   ██╔══██║██║╚████║██║░░██║░╚═══██╗  ██╔══██║██║░░░██║██╔══██╗")
+    print("▓   ██║░░██║██║░╚███║╚█████╔╝██████╔╝  ██║░░██║╚██████╔╝██████╦╝")
+    print("▓   ╚═╝░░╚═╝╚═╝░░╚══╝░╚════╝░╚═════╝░  ╚═╝░░╚═╝░╚═════╝░╚═════╝░")
+    print("▓                                                             ")
+    print("▓           ⚡ P R E M I U M  E D I T I O N ⚡               ")
+    print("▓                                                             ")
+    print("▓━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    print("▓                                                             ")
+    print("▓  🔗 GitHub: anos-rgb/anos-allscript                        ")
+    print("▓  📊 Total Modules: 253                                     ")
+    print("▓  🎨 UI Version: 3.0 Premium Edition                        ")
+    print("▓  ⚡ Status: FULLY LOADED                                   ")
+    print("▓                                                            ")
+    print("▓█████████████████████████████████████████████████████████████▓")
