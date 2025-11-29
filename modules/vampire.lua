@@ -1,17 +1,42 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() for _, plr in pairs(game.Players:GetPlayers()) do if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then if (plr.Character.HumanoidRootPart.Position - char:WaitForChild("HumanoidRootPart").Position).Magnitude < 10 then pcall(function() plr.Character.Humanoid:TakeDamage(0.5) char.Humanoid.Health = math.min(char.Humanoid.Health + 0.5, char.Humanoid.MaxHealth) end) end end end end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and humanoid then
+            -- Steal health from nearby players (client-side simulation)
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer and player.Character then
+                    local targetRoot = player.Character:FindFirstChild("HumanoidRootPart")
+                    local rootPart = character:FindFirstChild("HumanoidRootPart")
+                    
+                    if targetRoot and rootPart then
+                        local distance = (rootPart.Position - targetRoot.Position).Magnitude
+                        if distance < 10 then
+                            pcall(function()
+                                humanoid.Health = math.min(humanoid.Health + 1, humanoid.MaxHealth)
+                            end)
+                        end
+                    end
+                end
+            end
+        end
+        task.wait(1)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

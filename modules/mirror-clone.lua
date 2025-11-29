@@ -1,17 +1,52 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local clone = char:Clone() for _, p in pairs(clone:GetDescendants()) do if p:IsA("BasePart") then p.Anchored = true p.CanCollide = false p.Transparency = 0.5 end end clone.Parent = workspace module.clone = clone
+local Module = {}
+local connection
+local mirrorClone
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    mirrorClone = character:Clone()
+    mirrorClone.Name = "MirrorClone"
+    
+    -- Make clone visible but non-collidable
+    for _, part in pairs(mirrorClone:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+            part.Transparency = 0.5
+            part.Material = Enum.Material.ForceField
+        end
+        if part:IsA("Script") or part:IsA("LocalScript") then
+            part:Destroy()
+        end
+    end
+    
+    mirrorClone.Parent = workspace
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and rootPart and rootPart.Parent and mirrorClone then
+            local mirrorPos = rootPart.Position + Vector3.new(5, 0, 0)
+            if mirrorClone.PrimaryPart then
+                mirrorClone:SetPrimaryPartCFrame(CFrame.new(mirrorPos) * rootPart.CFrame.Rotation)
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    if mirrorClone and mirrorClone.Parent then
+        mirrorClone:Destroy()
+        mirrorClone = nil
+    end
 end
 
-return module
+return Module

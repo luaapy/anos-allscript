@@ -1,17 +1,49 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local part = Instance.new("Part") part.Shape = Enum.PartType.Ball part.Size = Vector3.new(8,8,8) part.Anchored = false part.CanCollide = false part.Material = Enum.Material.Neon part.Transparency = 0.5 part.Color = Color3.fromRGB(0,255,255) part.Parent = workspace local weld = Instance.new("WeldConstraint") weld.Part0 = char:WaitForChild("HumanoidRootPart") weld.Part1 = part weld.Parent = part part.Position = char.HumanoidRootPart.Position module.part = part
+local Module = {}
+local connection
+local sphere
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    sphere = Instance.new("Part")
+    sphere.Size = Vector3.new(6, 6, 6)
+    sphere.Anchored = true
+    sphere.CanCollide = false
+    sphere.Material = Enum.Material.Neon
+    sphere.Color = Color3.fromRGB(0, 255, 255)
+    sphere.Transparency = 0.5
+    sphere.Shape = Enum.PartType.Ball
+    sphere.Parent = workspace
+    
+    local sparkles = Instance.new("Sparkles")
+    sparkles.SparkleColor = Color3.fromRGB(0, 255, 255)
+    sparkles.Parent = sphere
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and rootPart and rootPart.Parent and sphere then
+            sphere.CFrame = rootPart.CFrame * CFrame.new(0, 3, 0)
+            
+            local pulse = 1 + math.sin(tick() * 5) * 0.3
+            sphere.Size = Vector3.new(6, 6, 6) * pulse
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    if sphere and sphere.Parent then
+        sphere:Destroy()
+        sphere = nil
+    end
 end
 
-return module
+return Module

@@ -1,17 +1,33 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, plr in pairs(game.Players:GetPlayers()) do if plr.Character then for _, part in pairs(plr.Character:GetDescendants()) do if part:IsA("BasePart") then local sel = Instance.new("SelectionBox") sel.Adornee = part sel.Parent = part end end end end
+local Module = {}
+local outlines = {}
+
+function Module.start()
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character then
+            for _, part in pairs(player.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    local outline = Instance.new("SelectionBox")
+                    outline.Adornee = part
+                    outline.LineThickness = 0.05
+                    outline.Color3 = Color3.fromRGB(0, 255, 255)
+                    outline.Parent = part
+                    table.insert(outlines, outline)
+                end
+            end
+        end
+    end
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    for _, outline in pairs(outlines) do
+        if outline and outline.Parent then
+            outline:Destroy()
+        end
+    end
+    outlines = {}
 end
 
-return module
+return Module

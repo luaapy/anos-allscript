@@ -1,17 +1,31 @@
-﻿local module = {}
-local active = false
+local RunService = game:GetService("RunService")
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    settings().Rendering.QualityLevel = Enum.QualityLevel.Level01 for _, obj in pairs(workspace:GetDescendants()) do if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Smoke") or obj:IsA("Fire") then obj.Enabled = false end end
+local Module = {}
+
+function Module.start()
+    -- Reduce graphics quality for FPS boost
+    settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+    
+    -- Disable shadows
+    game:GetService("Lighting").GlobalShadows = false
+    
+    -- Reduce particle count
+    for _, obj in pairs(workspace:GetDescendants()) do
+        if obj:IsA("ParticleEmitter") or obj:IsA("Trail") then
+            obj.Enabled = false
+        end
+    end
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+    game:GetService("Lighting").GlobalShadows = true
+    
+    for _, obj in pairs(workspace:GetDescendants()) do
+        if obj:IsA("ParticleEmitter") or obj:IsA("Trail") then
+            obj.Enabled = true
+        end
+    end
 end
 
-return module
+return Module

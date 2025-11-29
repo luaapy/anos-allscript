@@ -1,17 +1,34 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    char:WaitForChild("Humanoid").WalkSpeed = 8 for _, anim in pairs(char.Humanoid:GetPlayingAnimationTracks()) do anim:AdjustSpeed(0.5) end
+local Module = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+    
+    for _, anim in pairs(humanoid:GetPlayingAnimationTracks()) do
+        anim:AdjustSpeed(0.3)
+    end
+    
+    humanoid.WalkSpeed = humanoid.WalkSpeed * 0.3
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+    
+    local character = LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChild("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = 16
+            for _, anim in pairs(humanoid:GetPlayingAnimationTracks()) do
+                anim:AdjustSpeed(1)
+            end
+        end
+    end
 end
 
-return module
+return Module

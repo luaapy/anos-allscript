@@ -1,17 +1,38 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, part in pairs(char:GetDescendants()) do if part:IsA("BasePart") then part.Transparency = 0.5 end end
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    connection = RunService.Heartbeat:Connect(function()
+        local transparency = 0.5 + math.sin(tick() * 5) * 0.3
+        
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+                part.Transparency = transparency
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    local character = LocalPlayer.Character
+    if character then
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
+                part.Transparency = 0
+            end
+        end
+    end
 end
 
-return module
+return Module

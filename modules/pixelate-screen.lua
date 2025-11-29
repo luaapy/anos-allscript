@@ -1,17 +1,19 @@
-﻿local module = {}
-local active = false
+local Lighting = game:GetService("Lighting")
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local blur = Instance.new("BlurEffect") blur.Size = 10 blur.Parent = game.Lighting module.blur = blur
+local Module = {}
+local pixelation
+
+function Module.start()
+    pixelation = Instance.new("BlurEffect")
+    pixelation.Size = 10
+    pixelation.Parent = Lighting
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if pixelation and pixelation.Parent then
+        pixelation:Destroy()
+        pixelation = nil
+    end
 end
 
-return module
+return Module

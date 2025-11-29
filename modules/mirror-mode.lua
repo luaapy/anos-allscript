@@ -1,17 +1,29 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() char:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(char.HumanoidRootPart.Position) * CFrame.Angles(0,math.rad(180),0) end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and humanoid and humanoid.MoveDirection.Magnitude > 0 then
+            -- Mirror the movement
+            local mirrorDirection = Vector3.new(-humanoid.MoveDirection.X, humanoid.MoveDirection.Y, humanoid.MoveDirection.Z)
+            rootPart.CFrame = rootPart.CFrame + mirrorDirection * 0.1
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

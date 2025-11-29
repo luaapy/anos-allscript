@@ -1,17 +1,66 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local function createWing(side) local wing = Instance.new("Part") wing.Size = Vector3.new(0.5,5,3) wing.Anchored = false wing.CanCollide = false wing.Material = Enum.Material.Neon wing.Color = Color3.fromRGB(255,255,255) wing.Parent = workspace local weld = Instance.new("WeldConstraint") weld.Part0 = char:WaitForChild("Torso") or char:WaitForChild("UpperTorso") weld.Part1 = wing weld.Parent = wing wing.Position = char.HumanoidRootPart.Position + Vector3.new(side*3,0,0) return wing end module.wing1 = createWing(-1) module.wing2 = createWing(1)
+local Module = {}
+local connection
+local wings = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    -- Create left wing
+    for i = 1, 5 do
+        local part = Instance.new("Part")
+        part.Size = Vector3.new(0.3, 2 + i * 0.5, 1)
+        part.Anchored = true
+        part.CanCollide = false
+        part.Material = Enum.Material.Neon
+        part.Color = Color3.fromRGB(255, 255, 255)
+        part.Transparency = 0.3
+        part.Parent = workspace
+        table.insert(wings, {part = part, offset = Vector3.new(-2 - i * 0.3, 1, -i * 0.2), side = -1})
+    end
+    
+    -- Create right wing
+    for i = 1, 5 do
+        local part = Instance.new("Part")
+        part.Size = Vector3.new(0.3, 2 + i * 0.5, 1)
+        part.Anchored = true
+        part.CanCollide = false
+        part.Material = Enum.Material.Neon
+        part.Color = Color3.fromRGB(255, 255, 255)
+        part.Transparency = 0.3
+        part.Parent = workspace
+        table.insert(wings, {part = part, offset = Vector3.new(2 + i * 0.3, 1, -i * 0.2), side = 1})
+    end
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and rootPart and rootPart.Parent then
+            local flap = math.sin(tick() * 5) * 0.5
+            for _, wing in pairs(wings) do
+                if wing.part and wing.part.Parent then
+                    local offset = wing.offset + Vector3.new(0, flap, 0)
+                    wing.part.CFrame = rootPart.CFrame * CFrame.new(offset)
+                end
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, wing in pairs(wings) do
+        if wing.part and wing.part.Parent then
+            wing.part:Destroy()
+        end
+    end
+    wings = {}
 end
 
-return module
+return Module

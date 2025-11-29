@@ -1,17 +1,54 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for i = 1, 10 do pcall(function() local hat = char:FindFirstChildOfClass("Accessory"):Clone() hat.Parent = char end) end
+local Module = {}
+local connection
+local attachments = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character then
+                for i = 1, 5 do
+                    local randomPart = character:GetDescendants()[math.random(1, #character:GetDescendants())]
+                    if randomPart:IsA("BasePart") then
+                        local att = Instance.new("Attachment")
+                        att.Position = Vector3.new(math.random(-2, 2), math.random(-2, 2), math.random(-2, 2))
+                        att.Parent = randomPart
+                        
+                        table.insert(attachments, att)
+                    end
+                end
+                
+                if #attachments > 100 then
+                    for i = 1, 20 do
+                        local old = table.remove(attachments, 1)
+                        if old and old.Parent then
+                            old:Destroy()
+                        end
+                    end
+                end
+            end
+        end)
+        task.wait(0.1)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, att in pairs(attachments) do
+        if att and att.Parent then
+            att:Destroy()
+        end
+    end
+    attachments = {}
 end
 
-return module
+return Module

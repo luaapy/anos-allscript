@@ -1,17 +1,50 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, part in pairs(char:GetDescendants()) do if part:IsA("BasePart") then local sel = Instance.new("SelectionBox") sel.LineThickness = 0.2 sel.Color3 = Color3.fromHSV(math.random(),1,1) sel.Adornee = part sel.Parent = part end end
+local Module = {}
+local connection
+local highlights = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            local highlight = Instance.new("SelectionBox")
+            highlight.LineThickness = 0.1
+            highlight.Adornee = part
+            highlight.Color3 = Color3.fromRGB(0, 255, 255)
+            highlight.Parent = part
+            table.insert(highlights, highlight)
+        end
+    end
+    
+    connection = RunService.Heartbeat:Connect(function()
+        local hue = (tick() % 3) / 3
+        local color = Color3.fromHSV(hue, 1, 1)
+        
+        for _, highlight in pairs(highlights) do
+            if highlight and highlight.Parent then
+                highlight.Color3 = color
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, highlight in pairs(highlights) do
+        if highlight and highlight.Parent then
+            highlight:Destroy()
+        end
+    end
+    
+    highlights = {}
 end
 
-return module
+return Module

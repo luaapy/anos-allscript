@@ -1,17 +1,51 @@
-﻿local module = {}
-local active = false
+local Lighting = game:GetService("Lighting")
 
-function module.start()
-    active = true
+local Module = {}
+local vignette
+
+function Module.start()
+    vignette = Instance.new("ColorCorrectionEffect")
+    vignette.Brightness = -0.3
+    vignette.Parent = Lighting
+    
+    -- Create dark overlay
     local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local blur = Instance.new("BlurEffect") blur.Size = 5 blur.Parent = game.Lighting module.blur = blur
+    local LocalPlayer = Players.LocalPlayer
+    local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+    
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "VignetteEffect"
+    gui.Parent = PlayerGui
+    gui.DisplayOrder = 999
+    
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 1, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    frame.BackgroundTransparency = 0
+    frame.BorderSizePixel = 0
+    frame.Parent = gui
+    
+    local gradient = Instance.new("UIGradient")
+    gradient.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 0.5),
+        NumberSequenceKeypoint.new(0.5, 1),
+        NumberSequenceKeypoint.new(1, 0.5)
+    }
+    gradient.Parent = frame
+    
+    Module.gui = gui
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if vignette and vignette.Parent then
+        vignette:Destroy()
+        vignette = nil
+    end
+    
+    if Module.gui and Module.gui.Parent then
+        Module.gui:Destroy()
+        Module.gui = nil
+    end
 end
 
-return module
+return Module

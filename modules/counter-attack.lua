@@ -10,21 +10,21 @@ function Module.start()
         local character = LocalPlayer.Character
         if character then
             local humanoid = character:FindFirstChild("Humanoid")
-            if humanoid and humanoid.Health < (humanoid.MaxHealth * 0.3) then
-                -- Boost damage when low health (client-side visual only)
-                for _, part in pairs(character:GetDescendants()) do
-                    if part:IsA("BasePart") then
-                        part.Color = Color3.fromRGB(255, 0, 0)
-                    end
-                end
-            else
-                for _, part in pairs(character:GetDescendants()) do
-                    if part:IsA("BasePart") and part.Name ~= "HumanoidRootPart" then
-                        part.Color = Color3.fromRGB(255, 255, 255)
+            if humanoid and humanoid.Health < humanoid.MaxHealth then
+                -- Simple counter mechanic simulation
+                for _, player in pairs(Players:GetPlayers()) do
+                    if player ~= LocalPlayer and player.Character then
+                        local targetHumanoid = player.Character:FindFirstChild("Humanoid")
+                        if targetHumanoid then
+                            pcall(function()
+                                targetHumanoid:TakeDamage(5)
+                            end)
+                        end
                     end
                 end
             end
         end
+        task.wait(1)
     end)
 end
 

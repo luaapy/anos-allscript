@@ -1,17 +1,53 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for i = 1, 5 do local ff = Instance.new("ForceField") ff.Parent = char end
+local Module = {}
+local connection
+local forcefields = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character and rootPart and rootPart.Parent then
+                local ff = Instance.new("ForceField")
+                ff.Parent = character
+                table.insert(forcefields, ff)
+                
+                task.spawn(function()
+                    task.wait(0.5)
+                    if ff and ff.Parent then
+                        ff:Destroy()
+                    end
+                end)
+                
+                if #forcefields > 10 then
+                    local old = table.remove(forcefields, 1)
+                    if old and old.Parent then
+                        old:Destroy()
+                    end
+                end
+            end
+        end)
+        task.wait(0.1)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, ff in pairs(forcefields) do
+        if ff and ff.Parent then
+            ff:Destroy()
+        end
+    end
+    forcefields = {}
 end
 
-return module
+return Module

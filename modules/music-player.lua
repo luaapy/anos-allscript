@@ -1,17 +1,27 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local sound = Instance.new("Sound") sound.SoundId = "rbxassetid://1837879082" sound.Volume = 0.5 sound.Looped = true sound.Parent = char:WaitForChild("HumanoidRootPart") sound:Play() module.sound = sound
+local Module = {}
+local sound
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://1838673350" -- Example music ID
+    sound.Looped = true
+    sound.Volume = 1
+    sound.Parent = rootPart
+    sound:Play()
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if sound and sound.Parent then
+        sound:Stop()
+        sound:Destroy()
+        sound = nil
+    end
 end
 
-return module
+return Module

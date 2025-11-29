@@ -1,17 +1,22 @@
-﻿local module = {}
-local active = false
+local Lighting = game:GetService("Lighting")
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local dof = Instance.new("DepthOfFieldEffect") dof.FarIntensity = 0.5 dof.FocusDistance = 10 dof.Parent = game.Lighting module.dof = dof
+local Module = {}
+local depthOfField
+
+function Module.start()
+    depthOfField = Instance.new("DepthOfFieldEffect")
+    depthOfField.FocusDistance = 10
+    depthOfField.FarIntensity = 0.5
+    depthOfField.NearIntensity = 0.3
+    depthOfField.InFocusRadius = 30
+    depthOfField.Parent = Lighting
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if depthOfField and depthOfField.Parent then
+        depthOfField:Destroy()
+        depthOfField = nil
+    end
 end
 
-return module
+return Module

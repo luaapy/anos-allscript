@@ -1,17 +1,39 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() for _, part in pairs(char:GetDescendants()) do if part:IsA("BasePart") then part.Transparency = 0.3 + math.sin(tick() * 10) * 0.3 end end end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    connection = RunService.Heartbeat:Connect(function()
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                local flicker = math.random() > 0.5
+                part.Transparency = flicker and 0.7 or 0
+                part.Material = Enum.Material.ForceField
+            end
+        end
+        task.wait(0.1)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    local character = LocalPlayer.Character
+    if character then
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.Transparency = 0
+            end
+        end
+    end
 end
 
-return module
+return Module

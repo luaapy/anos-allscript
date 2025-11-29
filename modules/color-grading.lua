@@ -1,17 +1,22 @@
-﻿local module = {}
-local active = false
+local Lighting = game:GetService("Lighting")
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local cc = Instance.new("ColorCorrectionEffect") cc.Saturation = 0.5 cc.Contrast = 0.2 cc.Parent = game.Lighting module.cc = cc
+local Module = {}
+local colorCorrection
+
+function Module.start()
+    colorCorrection = Instance.new("ColorCorrectionEffect")
+    colorCorrection.Saturation = -0.3
+    colorCorrection.Contrast = 0.2
+    colorCorrection.Brightness = 0.1
+    colorCorrection.TintColor = Color3.fromRGB(255, 200, 150)
+    colorCorrection.Parent = Lighting
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if colorCorrection and colorCorrection.Parent then
+        colorCorrection:Destroy()
+        colorCorrection = nil
+    end
 end
 
-return module
+return Module

@@ -1,17 +1,50 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() if char:WaitForChild("Humanoid").MoveVector.Magnitude > 0 then char.HumanoidRootPart.Velocity = char.HumanoidRootPart.CFrame.LookVector * 50 end end)
+local Module = {}
+local connection
+local sliding = false
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and humanoid and humanoid.MoveDirection.Magnitude > 0 then
+            rootPart.Velocity = rootPart.CFrame.LookVector * 30
+            
+            -- Create slide particles
+            if math.random() > 0.7 then
+                local part = Instance.new("Part")
+                part.Size = Vector3.new(0.5, 0.1, 0.5)
+                part.Position = rootPart.Position - Vector3.new(0, 2, 0)
+                part.Anchored = true
+                part.CanCollide = false
+                part.Material = Enum.Material.Ice
+                part.Color = Color3.fromRGB(135, 206, 250)
+                part.Transparency = 0.5
+                part.Parent = workspace
+                
+                task.spawn(function()
+                    for i = 1, 10 do
+                        part.Transparency = part.Transparency + 0.05
+                        task.wait(0.05)
+                    end
+                    part:Destroy()
+                end)
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

@@ -1,9 +1,12 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
 local Module = {}
 
 function Module.start()
     game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Admin Commands";
-        Text = "Admin commands not available in client scripts";
+        Title = "Critical Strike";
+        Text = "Higher critical hit chance active!";
         Duration = 3;
     })
 end

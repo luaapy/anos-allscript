@@ -1,17 +1,74 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() if math.random() > 0.95 then local e = Instance.new("Part") e.Size = Vector3.new(5,5,5) e.Transparency = 0.7 e.Anchored = true e.CanCollide = false e.Material = Enum.Material.Neon e.Color = Color3.fromHSV(math.random(),1,1) e.Position = char:WaitForChild("HumanoidRootPart").Position e.Parent = workspace game:GetService("Debris"):AddItem(e,0.5) end end)
+local Module = {}
+local connection
+local effects = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character and rootPart and rootPart.Parent then
+                -- Create teleport effect
+                local part = Instance.new("Part")
+                part.Size = Vector3.new(4, 8, 4)
+                part.Position = rootPart.Position
+                part.Anchored = true
+                part.CanCollide = false
+                part.Material = Enum.Material.Neon
+                part.Color = Color3.fromHSV(math.random(), 1, 1)
+                part.Transparency = 0.5
+                part.Parent = workspace
+                
+                local sparkles = Instance.new("Sparkles")
+                sparkles.SparkleColor = part.Color
+                sparkles.Parent = part
+                
+                table.insert(effects, part)
+                
+                task.spawn(function()
+                    for i = 1, 10 do
+                        if part and part.Parent then
+                            part.Transparency = part.Transparency + 0.05
+                            part.Size = part.Size + Vector3.new(0.5, 0.5, 0.5)
+                            task.wait(0.05)
+                        end
+                    end
+                    if part and part.Parent then
+                        part:Destroy()
+                    end
+                end)
+                
+                -- Clean old effects
+                if #effects > 15 then
+                    local old = table.remove(effects, 1)
+                    if old and old.Parent then
+                        old:Destroy()
+                    end
+                end
+            end
+        end)
+        task.wait(0.1)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, effect in pairs(effects) do
+        if effect and effect.Parent then
+            effect:Destroy()
+        end
+    end
+    
+    effects = {}
 end
 
-return module
+return Module

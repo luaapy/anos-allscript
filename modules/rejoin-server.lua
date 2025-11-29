@@ -1,17 +1,15 @@
-﻿local module = {}
-local active = false
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local TeleportService = game:GetService("TeleportService") TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+local Module = {}
+
+function Module.start()
+    local placeId = game.PlaceId
+    TeleportService:TeleportToPlaceInstance(placeId, game.JobId, LocalPlayer)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
 end
 
-return module
+return Module

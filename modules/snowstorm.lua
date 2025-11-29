@@ -1,17 +1,72 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local att = Instance.new("Attachment") att.Parent = char:WaitForChild("HumanoidRootPart") local emitter = Instance.new("ParticleEmitter") emitter.Texture = "rbxasset://textures/particles/smoke_main.dds" emitter.Rate = 100 emitter.Lifetime = NumberRange.new(3) emitter.Speed = NumberRange.new(5,10) emitter.Color = ColorSequence.new(Color3.fromRGB(255,255,255)) emitter.Parent = att module.emitter = emitter
+local Module = {}
+local connection
+local snowflakes = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character and rootPart and rootPart.Parent then
+                for i = 1, 5 do
+                    local part = Instance.new("Part")
+                    part.Size = Vector3.new(0.3, 0.3, 0.3)
+                    part.Position = rootPart.Position + Vector3.new(
+                        math.random(-15, 15),
+                        math.random(10, 20),
+                        math.random(-15, 15)
+                    )
+                    part.Anchored = true
+                    part.CanCollide = false
+                    part.Material = Enum.Material.Neon
+                    part.Color = Color3.fromRGB(255, 255, 255)
+                    part.Transparency = 0.3
+                    part.Shape = Enum.PartType.Ball
+                    part.Parent = workspace
+                    
+                    table.insert(snowflakes, part)
+                    
+                    task.spawn(function()
+                        for j = 1, 100 do
+                            if part and part.Parent then
+                                part.Position = part.Position - Vector3.new(0, 0.2, 0)
+                                task.wait(0.05)
+                            end
+                        end
+                        if part and part.Parent then
+                            part:Destroy()
+                        end
+                    end)
+                end
+                
+                if #snowflakes > 100 then
+                    local old = table.remove(snowflakes, 1)
+                    if old and old.Parent then
+                        old:Destroy()
+                    end
+                end
+            end
+        end)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, snow in pairs(snowflakes) do
+        if snow and snow.Parent then
+            snow:Destroy()
+        end
+    end
+    snowflakes = {}
 end
 
-return module
+return Module

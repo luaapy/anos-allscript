@@ -1,17 +1,55 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local Mouse = player:GetMouse() module.conn = Mouse.Button1Down:Connect(function() local target = Mouse.Hit.Position local bp = Instance.new("BodyPosition") bp.Position = target bp.MaxForce = Vector3.new(math.huge,math.huge,math.huge) bp.Parent = char:WaitForChild("HumanoidRootPart") task.wait(1) bp:Destroy() end)
+local Module = {}
+local connection
+local grappling = false
+
+function Module.start()
+    local mouse = LocalPlayer:GetMouse()
+    
+    connection = UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        
+        if input.KeyCode == Enum.KeyCode.E and not grappling then
+            local character = LocalPlayer.Character
+            if character then
+                local rootPart = character:FindFirstChild("HumanoidRootPart")
+                
+                if rootPart and mouse.Target then
+                    grappling = true
+                    local targetPos = mouse.Hit.Position
+                    
+                    -- Create rope visual
+                    local rope = Instance.new("Part")
+                    rope.Size = Vector3.new(0.2, (rootPart.Position - targetPos).Magnitude, 0.2)
+                    rope.Position = (rootPart.Position + targetPos) / 2
+                    rope.CFrame = CFrame.lookAt(rootPart.Position, targetPos)
+                    rope.Anchored = true
+                    rope.CanCollide = false
+                    rope.Material = Enum.Material.Neon
+                    rope.Color = Color3.fromRGB(128, 128, 128)
+                    rope.Parent = workspace
+                    
+                    -- Pull character
+                    local direction = (targetPos - rootPart.Position).Unit
+                    rootPart.AssemblyLinearVelocity = direction * 80
+                    
+                    task.wait(0.5)
+                    rope:Destroy()
+                    grappling = false
+                end
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

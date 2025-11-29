@@ -1,17 +1,76 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local att = Instance.new("Attachment") att.Parent = char:WaitForChild("HumanoidRootPart") local emitter = Instance.new("ParticleEmitter") emitter.Texture = "rbxasset://textures/particles/sparkles_main.dds" emitter.Rate = 100 emitter.Lifetime = NumberRange.new(2) emitter.Speed = NumberRange.new(5) emitter.Color = ColorSequence.new{ColorSequenceKeypoint.new(0,Color3.fromRGB(100,0,200)),ColorSequenceKeypoint.new(1,Color3.fromRGB(0,100,255))} emitter.Parent = att module.emitter = emitter
+local Module = {}
+local connection
+local particles = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character and rootPart and rootPart.Parent then
+                for i = 1, 3 do
+                    local part = Instance.new("Part")
+                    part.Size = Vector3.new(0.5, 0.5, 0.5)
+                    part.Position = rootPart.Position + Vector3.new(
+                        math.random(-5, 5),
+                        math.random(-3, 3),
+                        math.random(-5, 5)
+                    )
+                    part.Anchored = true
+                    part.CanCollide = false
+                    part.Material = Enum.Material.Neon
+                    part.Color = Color3.fromRGB(75, 0, 130)
+                    part.Transparency = 0.2
+                    part.Shape = Enum.PartType.Ball
+                    part.Parent = workspace
+                    
+                    local sparkles = Instance.new("Sparkles")
+                    sparkles.SparkleColor = Color3.fromRGB(138, 43, 226)
+                    sparkles.Parent = part
+                    
+                    table.insert(particles, part)
+                    
+                    task.spawn(function()
+                        for j = 1, 15 do
+                            if part and part.Parent then
+                                part.Transparency = part.Transparency + 0.05
+                                task.wait(0.05)
+                            end
+                        end
+                        if part and part.Parent then
+                            part:Destroy()
+                        end
+                    end)
+                end
+                
+                if #particles > 50 then
+                    local old = table.remove(particles, 1)
+                    if old and old.Parent then
+                        old:Destroy()
+                    end
+                end
+            end
+        end)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, particle in pairs(particles) do
+        if particle and particle.Parent then
+            particle:Destroy()
+        end
+    end
+    particles = {}
 end
 
-return module
+return Module

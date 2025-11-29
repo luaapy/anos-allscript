@@ -1,17 +1,23 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    char:WaitForChild("Humanoid").HealthChanged:Connect(function(health) local ff = Instance.new("ForceField") ff.Parent = char task.wait(2) ff:Destroy() end)
+local Module = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    -- Auto equip shield tools
+    for _, tool in pairs(LocalPlayer.Backpack:GetChildren()) do
+        if tool:IsA("Tool") and (tool.Name:lower():find("shield") or tool.Name:lower():find("block")) then
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid:EquipTool(tool)
+            end
+        end
+    end
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
 end
 
-return module
+return Module

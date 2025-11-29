@@ -1,17 +1,29 @@
-﻿local module = {}
-local active = false
+local Module = {}
+local highlights = {}
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, obj in pairs(workspace:GetDescendants()) do if obj:IsA("Tool") or obj:IsA("Accessory") then local bill = Instance.new("BillboardGui") bill.Size =  UDim2.new(0,50,0,50) bill.Adornee = obj bill.AlwaysOnTop = true local frame = Instance.new("Frame") frame.Size = UDim2.new(1,0,1,0) frame.BackgroundColor3 = Color3.fromRGB(255,255,0) frame.Parent = bill bill.Parent = obj end end
+function Module.start()
+    for _, obj in pairs(workspace:GetDescendants()) do
+        if obj.Name:lower():find("coin") or obj.Name:lower():find("gem") or 
+           obj.Name:lower():find("loot") or obj.Name:lower():find("item") then
+            if obj:IsA("BasePart") then
+                local highlight = Instance.new("SelectionBox")
+                highlight.Adornee = obj
+                highlight.LineThickness = 0.1
+                highlight.Color3 = Color3.fromRGB(255, 215, 0)
+                highlight.Parent = obj
+                table.insert(highlights, highlight)
+            end
+        end
+    end
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    for _, highlight in pairs(highlights) do
+        if highlight and highlight.Parent then
+            highlight:Destroy()
+        end
+    end
+    highlights = {}
 end
 
-return module
+return Module

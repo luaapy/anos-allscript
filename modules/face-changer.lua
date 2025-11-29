@@ -1,17 +1,29 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() local face = char:FindFirstChild("Head"):FindFirstChildOfClass("Decal") if face and math.random() > 0.95 then local ids = {7699174,45282001,86487700,62532544} face.Texture = "rbxasset://textures/face.png" end end)
+local Module = {}
+local connection
+local faces = {263959004, 7074749, 28118994, 42070987, 20418658, 58559070}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local head = character:WaitForChild("Head")
+    local face = head:FindFirstChildOfClass("Decal")
+    
+    if face then
+        connection = RunService.Heartbeat:Connect(function()
+            face.Texture = "rbxassetid://" .. faces[math.random(1, #faces)]
+            task.wait(0.5)
+        end)
+    end
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

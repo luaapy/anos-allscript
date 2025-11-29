@@ -1,17 +1,64 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local att = Instance.new("Attachment") att.Parent = char:WaitForChild("HumanoidRootPart") local emitter = Instance.new("ParticleEmitter") emitter.Rate = 100 emitter.Speed = NumberRange.new(10) emitter.Lifetime = NumberRange.new(2) emitter.Color = ColorSequence.new(Color3.fromHSV(0.5,1,1)) emitter.Parent = att module.emitter = emitter
+local Module = {}
+local connection
+local parts = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    -- Create spiral particles
+    for i = 1, 20 do
+        local part = Instance.new("Part")
+        part.Size = Vector3.new(1, 1, 1)
+        part.Shape = Enum.PartType.Ball
+        part.Material = Enum.Material.Neon
+        part.Color = Color3.fromRGB(138, 43, 226)
+        part.Anchored = true
+        part.CanCollide = false
+        part.Parent = workspace
+        table.insert(parts, part)
+    end
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and rootPart and rootPart.Parent then
+            local t = tick() * 2
+            for i, part in pairs(parts) do
+                if part and part.Parent then
+                    local angle = (i / #parts) * math.pi * 2 + t
+                    local radius = 5 + math.sin(t + i) * 2
+                    local height = math.sin(t * 2 + i) * 3
+                    
+                    local offset = Vector3.new(
+                        math.cos(angle) * radius,
+                        height,
+                        math.sin(angle) * radius
+                    )
+                    
+                    part.Position = rootPart.Position + offset
+                    part.Color = Color3.fromHSV((tick() + i / #parts) % 1, 1, 1)
+                end
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, part in pairs(parts) do
+        if part and part.Parent then
+            part:Destroy()
+        end
+    end
+    
+    parts = {}
 end
 
-return module
+return Module

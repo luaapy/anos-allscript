@@ -1,17 +1,39 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() local ray = Ray.new(char:WaitForChild("HumanoidRootPart").Position, char.HumanoidRootPart.CFrame.LookVector * 3) local hit = workspace:FindPartOnRay(ray, char) if hit and char.Humanoid.MoveVector.Magnitude > 0 then char.HumanoidRootPart.Velocity = Vector3.new(char.HumanoidRootPart.Velocity.X, 30, char.HumanoidRootPart.Velocity.Z) end end)
+local Module = {}
+local connection
+
+function Module.start()
+    connection = RunService.Heartbeat:Connect(function()
+        local character = LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChild("Humanoid")
+            local rootPart = character:FindFirstChild("HumanoidRootPart")
+            
+            if humanoid and rootPart and UserInputService:IsKeyDown(Enum.KeyCode.Space) then
+                local ray = Ray.new(rootPart.Position, rootPart.CFrame.RightVector * 5)
+                local hit, position, normal = workspace:FindPartOnRay(ray, character)
+                
+                if hit then
+                    rootPart.AssemblyLinearVelocity = Vector3.new(
+                        rootPart. AssemblyLinearVelocity.X,
+                        50,
+                        rootPart.AssemblyLinearVelocity.Z
+                    ) + normal * 30
+                end
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

@@ -1,17 +1,38 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    char:WaitForChild("HumanoidRootPart").Touched:Connect(function(hit) if hit.Parent:FindFirstChild("Humanoid") and hit.Parent ~= char then pcall(function() hit.Parent.Humanoid.WalkSpeed = 0 task.wait(3) hit.Parent.Humanoid.WalkSpeed = 16 end) end end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = rootPart.Touched:Connect(function(hit)
+        if hit.Parent and hit.Parent:FindFirstChild("Humanoid") and hit.Parent ~= character then
+            local targetParts = hit.Parent:GetDescendants()
+            for _, part in pairs(targetParts) do
+                if part:IsA("BasePart") then
+                    part.Anchored = true
+                    part.Material = Enum.Material.Ice
+                    part.Color = Color3.fromRGB(100, 200, 255)
+                    
+                    task.spawn(function()
+                        task.wait(3)
+                        part.Anchored = false
+                    end)
+                end
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

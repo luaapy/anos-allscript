@@ -1,17 +1,43 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, part in pairs(char:GetDescendants()) do if part.Name == "LeftHand" or part.Name == "RightHand" then part.Size = part.Size * 5 end end
+local Module = {}
+local connection
+local hands = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    pcall(function()
+        for _, part in pairs(character:GetDescendants()) do
+            if part.Name == "LeftHand" or part.Name == "RightHand" then
+                local originalSize = part.Size
+                hands[part] = originalSize
+                
+                connection = RunService.Heartbeat:Connect(function()
+                    if part and part.Parent then
+                        part.Size = originalSize * 5
+                    end
+                end)
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for part, originalSize in pairs(hands) do
+        if part and part.Parent then
+            part.Size = originalSize
+        end
+    end
+    
+    hands = {}
 end
 
-return module
+return Module

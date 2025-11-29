@@ -1,17 +1,43 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local part = Instance.new("Part") part.Size = Vector3.new(5,100,5) part.Anchored = true part.CanCollide = false part.Material = Enum.Material.Neon part.Color = Color3.fromRGB(255,255,255) part.Transparency = 0.5 part.Position = char:WaitForChild("HumanoidRootPart").Position + Vector3.new(0,50,0) part.Parent = workspace module.part = part
+local Module = {}
+local connection
+local pillar
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    pillar = Instance.new("Part")
+    pillar.Size = Vector3.new(3, 100, 3)
+    pillar.Anchored = true
+    pillar.CanCollide = false
+    pillar.Material = Enum.Material.Neon
+    pillar.Color = Color3.fromRGB(255, 255, 255)
+    pillar.Transparency = 0.5
+    pillar.Shape = Enum.PartType.Cylinder
+    pillar.Parent = workspace
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and rootPart and rootPart.Parent and pillar then
+            pillar.CFrame = CFrame.new(rootPart.Position + Vector3.new(0, 50, 0)) * CFrame.Angles(0, 0, math.rad(90))
+            pillar.Transparency = 0.3 + math.sin(tick() * 3) * 0.2
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    if pillar and pillar.Parent then
+        pillar:Destroy()
+        pillar = nil
+    end
 end
 
-return module
+return Module

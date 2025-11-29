@@ -1,17 +1,78 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() if tick() % 2 < 0.03 then for i = 1, 10 do local part = Instance.new("Part") part.Shape = Enum.PartType.Ball part.Size = Vector3.new(i*2,i*2,i*2) part.Anchored = true part.CanCollide = false part.Material = Enum.Material.Neon part.Transparency = 0.7 part.Color = Color3.fromRGB(0,200,255) part.Position = char:WaitForChild("HumanoidRootPart").Position part.Parent = workspace game:GetService("Debris"):AddItem(part,0.5) end end end)
+local Module = {}
+local connection
+local waves = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character and rootPart and rootPart.Parent then
+                for i = 1, 8 do
+                    local angle = (i / 8) * math.pi * 2
+                    local distance = 5
+                    
+                    local part = Instance.new("Part")
+                    part.Size = Vector3.new(1, 4, 0.5)
+                    part.Position = rootPart.Position + Vector3.new(
+                        math.cos(angle) * distance,
+                        0,
+                        math.sin(angle) * distance
+                    )
+                    part.Anchored = true
+                    part.CanCollide = false
+                    part.Material = Enum.Material.Neon
+                    part.Color = Color3.fromRGB(0, 191, 255)
+                    part.Transparency = 0.3
+                    part.Parent = workspace
+                    
+                    table.insert(waves, part)
+                    
+                    task.spawn(function()
+                        for j = 1, 20 do
+                            if part and part.Parent then
+                                part.Size = part.Size + Vector3.new(0.5, 0.2, 0.1)
+                                part.Transparency = part.Transparency + 0.035
+                                task.wait(0.03)
+                            end
+                        end
+                        if part and part.Parent then
+                            part:Destroy()
+                        end
+                    end)
+                end
+                
+                if #waves > 100 then
+                    for i = 1, 20 do
+                        local old = table.remove(waves, 1)
+                        if old and old.Parent then
+                            old:Destroy()
+                        end
+                    end
+                end
+            end
+        end)
+        task.wait(0.5)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, wave in pairs(waves) do
+        if wave and wave.Parent then
+            wave:Destroy()
+        end
+    end
+    waves = {}
 end
 
-return module
+return Module

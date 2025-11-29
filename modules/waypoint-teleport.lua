@@ -1,17 +1,44 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.waypoint = char:WaitForChild("HumanoidRootPart").Position local UIS = game:GetService("UserInputService") module.conn = UIS.InputBegan:Connect(function(input) if input.KeyCode == Enum.KeyCode.Z then module.waypoint = char.HumanoidRootPart.Position elseif input.KeyCode == Enum.KeyCode.X then char.HumanoidRootPart.CFrame = CFrame.new(module.waypoint) end end)
+local Module = {}
+local waypoints = {}
+local connection
+
+function Module.start()
+    connection = UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        
+        if input.KeyCode == Enum.KeyCode.K then
+            -- Set waypoint
+            local character = LocalPlayer.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                local pos = character.HumanoidRootPart.Position
+                table.insert(waypoints, pos)
+                
+                game:GetService("StarterGui"):SetCore("SendNotification", {
+                    Title = "Waypoint Set";
+                    Text = "Waypoint #" .. #waypoints .. " saved";
+                    Duration = 2;
+                })
+            end
+        elseif input.KeyCode == Enum.KeyCode.L and #waypoints > 0 then
+            -- Teleport to last waypoint
+            local character = LocalPlayer.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                character.HumanoidRootPart.CFrame = CFrame.new(waypoints[#waypoints])
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    waypoints = {}
 end
 
-return module
+return Module

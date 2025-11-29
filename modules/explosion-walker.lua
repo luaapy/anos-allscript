@@ -1,17 +1,39 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() if char:WaitForChild("Humanoid").MoveVector.Magnitude > 0 and tick() % 0.5 < 0.03 then local e = Instance.new("Explosion") e.Position = char.HumanoidRootPart.Position e.BlastPressure = 0 e.Parent = workspace end end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and humanoid and humanoid.MoveDirection.Magnitude > 0 then
+            local explosion = Instance.new("Explosion")
+            explosion.Position = rootPart.Position - Vector3.new(0, 2, 0)
+            explosion.BlastRadius = 5
+            explosion.BlastPressure = 0
+            explosion.Parent = workspace
+            
+            task.spawn(function()
+                task.wait(0.1)
+                if explosion and explosion.Parent then
+                    explosion:Destroy()
+                end
+            end)
+        end
+        task.wait(0.2)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

@@ -1,17 +1,27 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.shield = 100 module.conn = game:GetService("RunService").Heartbeat:Connect(function() module.shield = math.min(module.shield + 0.1, 100) end)
+local Module = {}
+local connection
+local shield = 0
+local maxShield = 100
+
+function Module.start()
+    connection = RunService.Heartbeat:Connect(function()
+        if shield < maxShield then
+            shield = shield + 1
+        end
+        task.wait(0.5)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    shield = 0
 end
 
-return module
+return Module

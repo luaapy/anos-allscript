@@ -1,17 +1,45 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    local part = Instance.new("Part") part.Size = Vector3.new(10, 1, 10) part.Anchored = true part.Material = Enum.Material.Glass part.Transparency = 0.5 part.Parent = workspace part.Position = char:WaitForChild("HumanoidRootPart").Position - Vector3.new(0, 3.5, 0) module.part = part
+local Module = {}
+local connection
+local platform
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    platform = Instance.new("Part")
+    platform.Size = Vector3.new(10, 1, 10)
+    platform.Anchored = true
+    platform.CanCollide = true
+    platform.Material = Enum.Material.ForceField
+    platform.Color = Color3.fromRGB(135, 206, 250)
+    platform.Transparency = 0.3
+    platform.Parent = workspace
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character and rootPart and rootPart.Parent and platform then
+            platform.Position = rootPart.Position - Vector3.new(0, 4, 0)
+            platform.Orientation = Vector3.new(0, (tick() * 50) % 360, 0)
+            
+            local hue = (tick() % 5) / 5
+            platform.Color = Color3.fromHSV(hue, 0.5, 1)
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    if platform and platform.Parent then
+        platform:Destroy()
+        platform = nil
+    end
 end
 
-return module
+return Module

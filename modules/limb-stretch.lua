@@ -1,17 +1,46 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, part in pairs(char:GetDescendants()) do if part:IsA("BasePart") and part.Name:match("Arm") or part.Name:match("Leg") then part.Size = part.Size * Vector3.new(1,3,1) end end
+local Module = {}
+local connection
+local originalSizes = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") and (part.Name:find("Arm") or part.Name:find("Leg")) then
+            originalSizes[part] = part.Size
+        end
+    end
+    
+    connection = RunService.Heartbeat:Connect(function()
+        for part, originalSize in pairs(originalSizes) do
+            if part and part.Parent then
+                local stretch = 1 + math.sin(tick() * 3) * 2
+                part.Size = Vector3.new(
+                    originalSize.X,
+                    originalSize.Y * stretch,
+                    originalSize.Z
+                )
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for part, originalSize in pairs(originalSizes) do
+        if part and part.Parent then
+            part.Size = originalSize
+        end
+    end
+    originalSizes = {}
 end
 
-return module
+return Module

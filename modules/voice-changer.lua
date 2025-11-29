@@ -1,17 +1,16 @@
-﻿local module = {}
-local active = false
+local Module = {}
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, sound in pairs(char:GetDescendants()) do if sound:IsA("Sound") then sound.PlaybackSpeed = 0.5 end end
+function Module.start()
+    -- Voice changer not possible in client-side Roblox
+    -- This is a placeholder module
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Voice Changer";
+        Text = "Voice modification not supported in client scripts";
+        Duration = 3;
+    })
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
 end
 
-return module
+return Module

@@ -1,17 +1,33 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    for _, gui in pairs(player.PlayerGui:GetChildren()) do if gui:IsA("ScreenGui") then gui.Enabled = false end end
+local Module = {}
+local guis = {}
+
+function Module.start()
+    local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+    
+    for _, gui in pairs(PlayerGui:GetChildren()) do
+        if gui:IsA("ScreenGui") and gui.Enabled then
+            gui.Enabled = false
+            table.insert(guis, gui)
+        end
+    end
+    
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Screenshot Mode";
+        Text = "UI hidden for clean screenshots";
+        Duration = 2;
+    })
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    for _, gui in pairs(guis) do
+        if gui then
+            gui.Enabled = true
+        end
+    end
+    guis = {}
 end
 
-return module
+return Module

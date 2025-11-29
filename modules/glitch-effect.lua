@@ -1,17 +1,39 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() if math.random() > 0.95 then char:WaitForChild("HumanoidRootPart").CFrame = char.HumanoidRootPart.CFrame + Vector3.new(math.random(-2,2), math.random(-2,2), math.random(-2,2)) end end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    
+    connection = RunService.Heartbeat:Connect(function()
+        if character then
+            for _, part in pairs(character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    -- Glitch effect
+                    local glitch = math.random() > 0.7
+                    if glitch then
+                        part.CFrame = part.CFrame * CFrame.new(
+                            math.random(-1, 1) * 0.1,
+                            math.random(-1, 1) * 0.1,
+                            math.random(-1, 1) * 0.1
+                        )
+                        part.Color = Color3.fromHSV(math.random(), 1, 1)
+                    end
+                end
+            end
+        end
+        task.wait(0.05)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module

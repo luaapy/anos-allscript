@@ -1,17 +1,67 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    module.conn = game:GetService("RunService").Heartbeat:Connect(function() if tick() % 0.1 < 0.03 then local clone = char:Clone() for _, p in pairs(clone:GetDescendants()) do if p:IsA("BasePart") then p.Anchored = true p.CanCollide = false p.Transparency = 0.7 end end clone.Parent = workspace game:GetService("Debris"):AddItem(clone, 1) end end)
+local Module = {}
+local connection
+local trails = {}
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if character and rootPart and rootPart.Parent then
+                local clone = Instance.new("Part")
+                clone.Size = Vector3.new(4, 6, 2)
+                clone.Position = rootPart.Position
+                clone.Anchored = true
+                clone.CanCollide = false
+                clone.Material = Enum.Material.ForceField
+                clone.Color = Color3.fromRGB(200, 200, 255)
+                clone.Transparency = 0.5
+                clone.Parent = workspace
+                
+                table.insert(trails, clone)
+                
+                task.spawn(function()
+                    for i = 1, 15 do
+                        if clone and clone.Parent then
+                            clone.Transparency = clone.Transparency + 0.033
+                            task.wait(0.05)
+                        end
+                    end
+                    if clone and clone.Parent then
+                        clone:Destroy()
+                    end
+                end)
+                
+                if #trails > 20 then
+                    local old = table.remove(trails, 1)
+                    if old and old.Parent then
+                        old:Destroy()
+                    end
+                end
+            end
+        end)
+        task.wait(0.1)
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.emitter then module.emitter:Destroy() end if module.part then module.part:Destroy() end if module.sound then module.sound:Destroy() end if module.clone then module.clone:Destroy() end if module.wing1 then module.wing1:Destroy() end if module.wing2 then module.wing2:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
+    
+    for _, trail in pairs(trails) do
+        if trail and trail.Parent then
+            trail:Destroy()
+        end
+    end
+    
+    trails = {}
 end
 
-return module
+return Module

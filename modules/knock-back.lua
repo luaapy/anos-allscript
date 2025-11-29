@@ -1,17 +1,30 @@
-﻿local module = {}
-local active = false
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
 
-function module.start()
-    active = true
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local char = player.Character or player.CharacterAdded:Wait()
-    char:WaitForChild("HumanoidRootPart").Touched:Connect(function(hit) if hit.Parent:FindFirstChild("Humanoid") and hit.Parent ~= char then pcall(function() local bv = Instance.new("BodyVelocity") bv.Velocity = (hit.Position - char.HumanoidRootPart.Position).Unit * 100 bv.MaxForce = Vector3.new(math.huge,math.huge,math.huge) bv.Parent = hit.Parent.HumanoidRootPart task.wait(0.5) bv:Destroy() end) end end)
+local Module = {}
+local connection
+
+function Module.start()
+    local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    
+    connection = rootPart.Touched:Connect(function(hit)
+        if hit.Parent and hit.Parent:FindFirstChild("HumanoidRootPart") and hit.Parent ~= character then
+            local targetRoot = hit.Parent:FindFirstChild("HumanoidRootPart")
+            if targetRoot then
+                local knockbackDirection = (targetRoot.Position - rootPart.Position).Unit
+                targetRoot.AssemblyLinearVelocity = knockbackDirection * 100 + Vector3.new(0, 50, 0)
+            end
+        end
+    end)
 end
 
-function module.stop()
-    active = false
-    if module.conn then module.conn:Disconnect() end if module.part then module.part:Destroy() end if module.cc then module.cc:Destroy() end if module.blur then module.blur:Destroy() end if module.dof then module.dof:Destroy() end if module.gui then module.gui:Destroy() end
+function Module.stop()
+    if connection then
+        connection:Disconnect()
+        connection = nil
+    end
 end
 
-return module
+return Module
