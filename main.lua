@@ -300,7 +300,7 @@ MainContainer.BackgroundTransparency = 1
 MainContainer.Position = UDim2.new(0.5, 0, 0.5, 0)
 MainContainer.Size = UDim2.new(0, 0, 0, 0)
 MainContainer.Visible = false
-MainContainer.ZIndex = 10000
+MainContainer.ZIndex = 999999
 
 local LeftPanel = Instance.new("Frame")
 LeftPanel.Name = "LeftPanel"
