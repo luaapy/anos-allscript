@@ -284,7 +284,7 @@ local HubGui = Instance.new("ScreenGui")
 HubGui.Name = "ANOS_PREMIUM_HUB"
 HubGui.Parent = PlayerGui
 HubGui.ResetOnSpawn = false
-HubGui.DisplayOrder = 10000
+HubGui.DisplayOrder = 999999
 HubGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local BlurEffect = Instance.new("BlurEffect")
