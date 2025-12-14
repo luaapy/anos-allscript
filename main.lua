@@ -9,7 +9,7 @@ local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local ModuleStates = {}
 local ModuleConnections = {}
 
-local GitHubBase = "https://raw.githubusercontent.com/anos-rgb/anos-allscript/main/modules/"
+local GitHubBase = "https://raw.githubusercontent.com/luaapy/anos-allscript/main/modules/"
 
 local Modules = {
     {name = "Speed Hack", file = "speed-hack.lua", category = "Movement", icon = "⚡", color = Color3.fromRGB(255, 215, 0)},
@@ -284,7 +284,7 @@ local HubGui = Instance.new("ScreenGui")
 HubGui.Name = "ANOS_PREMIUM_HUB"
 HubGui.Parent = PlayerGui
 HubGui.ResetOnSpawn = false
-HubGui.DisplayOrder = 999999
+HubGui.DisplayOrder = 2147483647
 HubGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local BlurEffect = Instance.new("BlurEffect")
