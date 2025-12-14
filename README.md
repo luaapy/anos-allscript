@@ -61,7 +61,7 @@
 
 ### Method 1: Loadstring (Recommended)
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/anos-rgb/anos-allscript/main/main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/luaapy/anos-allscript/main/main.lua"))()
 ```
 
 ### Method 2: Manual Install
